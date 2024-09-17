@@ -5,6 +5,7 @@ import {
   putApi,
   patchApi,
   postFormApi,
+  patchFormApi,
 } from "./axiosService";
 
 export const registerApi = (data) => {
@@ -86,7 +87,7 @@ export const getUserCoinApi = (id, data) => {
   return getApi(`getUserCoin/${id}`, data);
 };
 export const verifySingleUserApi = (data) => {
-  return patchApi(`verifySingleUser`, data);
+  return patchFormApi(`verifySingleUser`, data);
 };
 export const getsignUserApi = (data) => {
   return patchApi(`getsignUser`, data);
