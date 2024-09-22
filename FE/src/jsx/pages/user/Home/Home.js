@@ -11,7 +11,8 @@ import './custom.css'
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Home.css";
-import "./style.css"; import Logo from '../../../../assets/images/logo.png'
+import "./style.css";
+import Logo from '../../../../assets/images/logo - Copy.png'
 const testimonials = [
   {
     name: "Jenny Wilson",
