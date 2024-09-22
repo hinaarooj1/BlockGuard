@@ -53,6 +53,7 @@
     "react-scripts": "5.0.1",
     "react-scroll": "^1.9.0",
     "react-select": "^5.8.0",
+    "react-slick": "^0.30.2",
     "react-sparklines": "^1.7.0",
     "react-spinners": "^0.14.1",
     "react-table": "^7.8.0",
@@ -64,6 +65,7 @@
     "redux-thunk": "^3.1.0",
     "rsuite": "^5.49.0",
     "sass": "^1.77.8",
+    "slick-carousel": "^1.8.1",
     "sweetalert2": "^11.10.2",
     "swiper": "^11.0.5",
     "wait-on": "^8.0.1",
@@ -75,7 +77,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "build:css": "postcss src/jsx/pages/user/style.css -d dist/css",
+    "build:css": "postcss src/jsx/pages/user/Home/bootstrap.css -d dist/css",
     "eject": "react-scripts eject",
     "sass": "node-sass --watch src/assets/scss/main.scss src/assets/css/style.css --source-map src/assets/css/style.css.map",
     "electron-dev": "electron .",
@@ -94,8 +96,6 @@
     "directories": {
       "buildResources": "assets"
     }
-     
-  
   },
   "eslintConfig": {
     "extends": [
@@ -118,9 +118,9 @@
   "devDependencies": {
     "electron": "^32.0.2",
     "electron-builder": "^25.0.5",
+    "electron-is-dev": "^3.0.1",
     "postcss-cli": "^11.0.0",
-    "postcss-prefix-selector": "^1.16.1",
-    "electron-is-dev": "^3.0.1"
+    "postcss-prefix-selector": "^1.16.1"
   },
   "keywords": [],
   "author": "",
