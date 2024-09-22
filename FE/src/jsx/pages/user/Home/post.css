@@ -2550,6 +2550,15 @@ body.rtl .elementor-144 .elementor-element.elementor-element-d405f5e {
     grid-template-columns: 50% 50% !important
 }
 
+@media (max-width:768px) {
+    .masas {
+
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+}
+
 .elementor-539 .elementor-element.elementor-element-6bf6dc7 {
     --display: grid;
     --e-con-grid-template-columns: 390px 426px 330px;

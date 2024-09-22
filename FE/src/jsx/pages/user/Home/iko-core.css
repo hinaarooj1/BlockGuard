@@ -703,11 +703,11 @@
     text-align: left;
 }
 
-.homepg .mobile-menu-visible {
+.mobile-menu-visible {
     overflow: hidden;
 }
 
-.homepg .mobile-menu-visible .mobile-menu {
+.mobile-menu-visible .mobile-menu {
     -webkit-transform: translateX(0%);
     -ms-transform: translateX(0%);
     transform: translateX(0%);
@@ -734,7 +734,7 @@
     background: rgba(0, 0, 0, 0.5);
 }
 
-.homepg .mobile-menu-visible .menu-backdrop {
+.mobile-menu-visible .menu-backdrop {
     opacity: 1;
     visibility: visible;
 }
@@ -754,7 +754,7 @@
     box-shadow: -9px 0 14px 0px rgb(0 0 0 / 6%);
 }
 
-.homepg .mobile-menu-visible .mobile-menu .menu-box {
+.mobile-menu-visible .mobile-menu .menu-box {
     opacity: 1;
     visibility: visible;
 }
@@ -775,7 +775,7 @@
     transition: all 0.9s ease;
 }
 
-.homepg .mobile-menu-visible .mobile-menu .close-btn {
+.mobile-menu-visible .mobile-menu .close-btn {
     -webkit-transform: rotate(360deg);
     -ms-transform: rotate(360deg);
     transform: rotate(360deg);
@@ -951,6 +951,13 @@
     color: var(--tg-white);
 }
 
+@media (max-width:1000px) {
+
+    .homepg .menu-area .mobile-nav-toggler {
+        display: flex !important
+    }
+
+}
 
 /*=============================
 	04. OffCanvas
