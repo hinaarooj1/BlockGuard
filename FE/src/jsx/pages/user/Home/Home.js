@@ -166,7 +166,7 @@ const Home = () => {
                       <li id="menu-item-1274" className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1274"><a href="#why-blockchain" aria-current="page">Why Blockchain</a></li>
                       <li id="menu-item-1275" className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1275"><a href="#features" aria-current="page">Features</a></li>
 
-                      <li id="menu-item-1272" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-1272"><Link to="auth/signin">Sign in</Link></li>
+                      <li id="menu-item-1272" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-1272"><Link to="auth/login">Sign in</Link></li>
                     </ul>                                      </div>
                   <div className="social-links">
                     <ul className="clearfix list-wrap">
