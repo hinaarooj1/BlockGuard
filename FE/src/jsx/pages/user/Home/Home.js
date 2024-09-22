@@ -413,7 +413,7 @@ const Home = () => {
                   </div>
                   <div className="elementor-element elementor-element-4c43919 elementor-widget elementor-widget-heading" data-id="4c43919" data-element_type="widget" data-widget_type="heading.default">
                     <div className="elementor-widget-container">
-                      <h2 className="elementor-heading-title elementor-size-default">Unlock the full potential of your cryptocurrency journey with Block Guard:</h2>		</div>
+                      <h2 className="elementor-heading-title elementor-size-default">Unlock the full potential of your cryptocurrency journey with Block Guard</h2>		</div>
                   </div>
                   <div className="elementor-element elementor-element-da716e1 elementor-widget elementor-widget-heading" data-id="da716e1" data-element_type="widget" data-widget_type="heading.default">
                     <div className="elementor-widget-container">
