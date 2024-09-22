@@ -595,7 +595,7 @@ const Home = () => {
                   </div>
                   <div className="elementor-element elementor-element-2f68d8f elementor-widget elementor-widget-heading" data-id="2f68d8f" data-element_type="widget" data-widget_type="heading.default">
                     <div className="elementor-widget-container">
-                      <h2 className="elementor-heading-title elementor-size-default">Common Inquiries Regarding</h2>		</div>
+                      <h2 className="elementor-heading-title elementor-size-default">Common Inquiries </h2>		</div>
                   </div>
                   <div className="elementor-element elementor-element-63b6c49 elementor-widget elementor-widget-heading" data-id="63b6c49" data-element_type="widget" data-widget_type="heading.default">
                     <div className="elementor-widget-container">
@@ -776,10 +776,7 @@ const Home = () => {
                         <i aria-hidden="true" className="fab fa-facebook-f" />                  </a>
                       <a href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} viewBox="0 0 16 16" fill="none"><path d="M9.52219 6.77491L15.4786 0H14.0671L8.89518 5.88256L4.76438 0H0L6.24657 8.89547L0 16H1.41155L6.87322 9.78779L11.2356 16H16L9.52219 6.77491ZM7.58888 8.97384L6.95597 8.08805L1.92015 1.03974H4.08821L8.15218 6.72796L8.78508 7.61374L14.0677 15.0076H11.8997L7.58888 8.97384Z" fill="currentColor" /></svg>                  </a>
-                      <a href="#">
-                        <i aria-hidden="true" className="fab fa-instagram" />                  </a>
-                      <a href="#">
-                        <i aria-hidden="true" className="fab fa-telegram-plane" />                  </a>
+
                     </div>
                   </div>
                 </div>

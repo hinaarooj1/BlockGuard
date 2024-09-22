@@ -1,4 +1,4 @@
-import logo_300x57_1 from "../../../assets/images/img/Logo.png";
+import logo_300x57_1 from "../../../assets/images/img/Logo - Copy.png";
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Log from "../../../assets/images/img/log.jpg";
