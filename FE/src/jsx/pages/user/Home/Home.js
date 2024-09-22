@@ -13,29 +13,33 @@ import { Link, useLocation } from "react-router-dom";
 import "./Home.css";
 import "./style.css";
 import Logo from '../../../../assets/images/logo - Copy.png'
+import Ethan from '../../../../assets/images/ethan.jpg'
+import Leo from '../../../../assets/images/leo.jpg'
+import Lily from '../../../../assets/images/lily.jpg'
+import Sophie from '../../../../assets/images/sophie.jpg'
 const testimonials = [
   {
-    name: "Jenny Wilson",
+    name: "Ethan Bennett",
     designation: "",
-    image: "https://iko.themegenix.net/blockchain/wp-content/uploads/2024/04/testi_thumb2.png",
+    image: Ethan,
     text: "I just used Block Guard for the first time, and I’m blown away! Everything was so easy. Thanks a lot!"
   },
   {
-    name: "David Liyan",
+    name: "Leo Harrison",
     designation: "",
-    image: "https://iko.themegenix.net/blockchain/wp-content/uploads/2024/04/testi_thumb1.png",
+    image: Leo,
     text: "Block Guard is fantastic! They have the lowest fees, fast transactions, and amazing support in many countries. Truly unmatched!"
   },
   {
-    name: "Robert Fox",
+    name: "Lily Carter",
     designation: "",
-    image: "https://iko.themegenix.net/blockchain/wp-content/uploads/2024/04/testi_thumb3.png",
+    image: Lily,
     text: "Block Guard is great! I bought crypto yesterday, and the whole process was smooth—no delays at all. I’ll be back for sure!"
   },
   {
-    name: "Arniye Kelly",
+    name: "Sophie Ling",
     designation: "",
-    image: "https://iko.themegenix.net/blockchain/wp-content/uploads/2024/04/testi_thumb4.png",
+    image: Sophie,
     text: "The process is super simple, and the customer service is so friendly. Buying and transferring Bitcoin is quick and easy. I love Block Guard!"
   }
 ];
