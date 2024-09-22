@@ -12,7 +12,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Home.css";
 import "./style.css";
-import LogoNew from '../../../../assets/images/logo - Copy.png'
+import LogoNew from '../../../../assets/images/logo.png'
 import Ethan from '../../../../assets/images/ethan.jpg'
 import Leo from '../../../../assets/images/leo.jpg'
 import Lily from '../../../../assets/images/lily.jpg'
