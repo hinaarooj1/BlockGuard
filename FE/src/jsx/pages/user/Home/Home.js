@@ -12,7 +12,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import "./Home.css";
 import "./style.css";
-import Logo from '../../../../assets/images/logo - Copy.png'
+import LogoNew from '../../../../assets/images/logo - Copy.png'
 import Ethan from '../../../../assets/images/ethan.jpg'
 import Leo from '../../../../assets/images/leo.jpg'
 import Lily from '../../../../assets/images/lily.jpg'
@@ -127,7 +127,7 @@ const Home = () => {
                           <nav className="menu-nav">
                             <div className="logo">
                               <a href="/">
-                                <img src={Logo} alt="IKO" />
+                                <img src={LogoNew} alt="IKO" />
                               </a>
                             </div>
                             <div className="navbar-wrap main-menu m-auto d-none d-lg-flex">
@@ -157,7 +157,7 @@ const Home = () => {
                   <div onClick={closeMenu} className="close-btn"><i className="fas fa-times" /></div>
                   <div className="nav-logo mobile-logo">
                     <a href="#">
-                      <img src={Logo} alt="IKO" />
+                      <img src={LogoNew} alt="IKO" />
                     </a>
                   </div>
                   <div className="menu-outer">
@@ -762,7 +762,7 @@ const Home = () => {
                 <div className="elementor-element elementor-element-609d349 elementor-widget elementor-widget-image" data-id="609d349" data-element_type="widget" data-widget_type="image.default">
                   <div className="elementor-widget-container">
                     <a href="#">
-                      <img width={236} height={78} src={Logo} className="attachment-full size-full wp-image-57" alt />								</a>
+                      <img width={236} height={78} src={LogoNew} className="attachment-full size-full wp-image-57" alt />								</a>
                   </div>
                 </div>
                 <div className="elementor-element elementor-element-924bab6 elementor-widget elementor-widget-heading" data-id="924bab6" data-element_type="widget" data-widget_type="heading.default">
