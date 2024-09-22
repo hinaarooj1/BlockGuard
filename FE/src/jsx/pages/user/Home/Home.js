@@ -130,13 +130,8 @@ const Home = () => {
                               <ul id="menu-1-8e54fb7" className="navigation"><li id="menu-item-1270" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-144 current_page_item menu-item-1270"><a href="#" aria-current="page">Home</a></li>
                                 <li id="menu-item-1274" className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1274"><a href="#why-blockchain" aria-current="page">Why Blockchain</a></li>
                                 <li id="menu-item-1275" className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1275"><a href="#features" aria-current="page">Features</a></li>
-                                <li id="menu-item-1271" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1271"><a href="#">Blog</a>
-                                  <ul className="sub-menu">
-                                    <li id="menu-item-1276" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-1276"><a href="#">Our Blog</a></li>
-                                    <li id="menu-item-1277" className="menu-item menu-item-type-post_type menu-item-object-post menu-item-1277"><a href="#">Blog Details</a></li>
-                                  </ul>
-                                  <div className="dropdown-btn"><span className="fas fa-angle-down" /></div></li>
-                                <li id="menu-item-1272" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-1272"><a href="#">Contact</a></li>
+
+
                               </ul>                                      </div>
                             <div className="header-action">
                               <ul className="list-wrap">
@@ -166,12 +161,7 @@ const Home = () => {
                     <ul id="menu-1-8e54fb7" className="navigation"><li id="menu-item-1270" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-144 current_page_item menu-item-1270"><a href="#" aria-current="page">Home</a></li>
                       <li id="menu-item-1274" className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1274"><a href="#why-blockchain" aria-current="page">Why Blockchain</a></li>
                       <li id="menu-item-1275" className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1275"><a href="#features" aria-current="page">Features</a></li>
-                      <li id="menu-item-1271" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-1271"><a href="#">Blog</a>
-                        <ul className="sub-menu">
-                          <li id="menu-item-1276" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-1276"><a href="#">Our Blog</a></li>
-                          <li id="menu-item-1277" className="menu-item menu-item-type-post_type menu-item-object-post menu-item-1277"><a href="#">Blog Details</a></li>
-                        </ul>
-                        <div className="dropdown-btn"><span className="fas fa-angle-down" /></div></li>
+
                       <li id="menu-item-1272" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-1272"><Link to="auth/signin">Sign in</Link></li>
                     </ul>                                      </div>
                   <div className="social-links">
@@ -258,7 +248,7 @@ const Home = () => {
                   <div className="elementor-element elementor-element-1a1d570 e-con-full e-flex e-con e-child" data-id="1a1d570" data-element_type="container">
                     <div className="elementor-element elementor-element-54af084 elementor-widget elementor-widget-heading" data-id="54af084" data-element_type="widget" data-widget_type="heading.default">
                       <div className="elementor-widget-container">
-                        <p className="elementor-heading-title elementor-size-default">. Block Guard is your go-to resource for secure wallets, seamless exchanges, and real-time crypto insights. From coin tracking and analysis to the latest news, we've got you covered.</p>		</div>
+                        <p className="elementor-heading-title elementor-size-default">Block Guard is your go-to resource for secure wallets, seamless exchanges, and real-time crypto insights. From coin tracking and analysis to the latest news, we've got you covered.</p>		</div>
                     </div>
                     <div className="elementor-element elementor-element-fa06e25 elementor-widget elementor-widget-tg-btn" data-id="fa06e25" data-element_type="widget" data-widget_type="tg-btn.default">
                       <div className="elementor-widget-container">
@@ -430,19 +420,19 @@ const Home = () => {
                   <div className="elementor-element elementor-element-5a58f54 e-grid e-con-full e-con e-child" data-id="5a58f54" data-element_type="container">
                     <div className="elementor-element elementor-element-c61a9cd elementor-widget elementor-widget-heading" data-id="c61a9cd" data-element_type="widget" data-widget_type="heading.default">
                       <div className="elementor-widget-container">
-                        <h2 className="elementor-heading-title elementor-size-default"><a href="#">Buying Crypto</a></h2>		</div>
+                        <h2 className="elementor-heading-title elementor-size-default"><a >Buying Crypto</a></h2>		</div>
                     </div>
                     <div className="elementor-element elementor-element-75283a0 elementor-widget elementor-widget-heading" data-id="75283a0" data-element_type="widget" data-widget_type="heading.default">
                       <div className="elementor-widget-container">
-                        <h2 className="elementor-heading-title elementor-size-default"><a href="#">Staking Crypto</a></h2>		</div>
+                        <h2 className="elementor-heading-title elementor-size-default"><a >Staking Crypto</a></h2>		</div>
                     </div>
                     <div className="elementor-element elementor-element-fbed052 elementor-widget elementor-widget-heading" data-id="fbed052" data-element_type="widget" data-widget_type="heading.default">
                       <div className="elementor-widget-container">
-                        <h2 className="elementor-heading-title elementor-size-default"><a href="#">Crypto custodian</a></h2>		</div>
+                        <h2 className="elementor-heading-title elementor-size-default"><a >Crypto custodian</a></h2>		</div>
                     </div>
                     <div className="elementor-element elementor-element-d53333e elementor-widget elementor-widget-heading" data-id="d53333e" data-element_type="widget" data-widget_type="heading.default">
                       <div className="elementor-widget-container">
-                        <h2 className="elementor-heading-title elementor-size-default"><a href="#">Smart contracts</a></h2>		</div>
+                        <h2 className="elementor-heading-title elementor-size-default"><a >Smart contracts</a></h2>		</div>
                     </div>
                   </div>
                 </div>
@@ -485,7 +475,7 @@ const Home = () => {
                 <div className="e-con-inner">
                   <div className="elementor-element elementor-element-b41639d elementor-widget elementor-widget-tg-heading" data-id="b41639d" data-element_type="widget" data-widget_type="tg-heading.default">
                     <div className="elementor-widget-container">
-                      <h2 className="title gradient-title">TESTIMONIAL</h2>
+                      <h2 className="title gradient-title">TESTIMONIALS</h2>
                     </div>
                   </div>
                   <div className="elementor-element elementor-element-1f2c251 elementor-widget elementor-widget-heading" data-id="1f2c251" data-element_type="widget" data-widget_type="heading.default">
