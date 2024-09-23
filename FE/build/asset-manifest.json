@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "./static/css/main.e05d1ca6.css",
-    "main.js": "./static/js/main.d895debd.js",
+    "main.css": "./static/css/main.e08a5025.css",
+    "main.js": "./static/js/main.99c543cb.js",
     "static/media/materialdesignicons-webfont.svg?v=2.4.85": "./static/media/materialdesignicons-webfont.6285372902a5d4634762.svg",
     "static/media/la-brands-400.svg": "./static/media/la-brands-400.928495fae14841a0d610.svg",
     "static/media/la-solid-900.svg": "./static/media/la-solid-900.a813034654b4ff0a0bac.svg",
@@ -15,11 +15,15 @@
     "static/media/la-solid-900.eot": "./static/media/la-solid-900.4184d740eae2fb727bfe.eot",
     "static/media/la-solid-900.ttf": "./static/media/la-solid-900.279f38601f1d1655255f.ttf",
     "static/media/fa-brands-400.ttf": "./static/media/fa-brands-400.0a1b701f5563c2288281.ttf",
+    "static/media/sophie.jpg": "./static/media/sophie.c4b75db6bae42a6c2c57.jpg",
     "static/media/pic-2.png": "./static/media/pic-2.5d17daa845e18143e6eb.png",
     "static/media/materialdesignicons-webfont.woff?v=2.4.85": "./static/media/materialdesignicons-webfont.20ea693c7cf2fa077928.woff",
+    "static/media/ethan.jpg": "./static/media/ethan.f1f989f7c0c1dae78a72.jpg",
+    "static/media/leo.jpg": "./static/media/leo.b838a2c9997ce6eef990.jpg",
     "static/media/la-brands-400.eot": "./static/media/la-brands-400.908ce19d18187969b32f.eot",
     "static/media/la-brands-400.ttf": "./static/media/la-brands-400.6ecea4826b87fafb97be.ttf",
     "static/media/mining_bg.jpg": "./static/media/mining_bg.10133f3046ca84a3186e.jpg",
+    "static/media/lily.jpg": "./static/media/lily.9ffb093e42408a0fc480.jpg",
     "static/media/materialdesignicons-webfont.woff2?v=2.4.85": "./static/media/materialdesignicons-webfont.cf40208918fc49bf4cf2.woff2",
     "static/media/fa-solid-900.woff2": "./static/media/fa-solid-900.4896d4b04430cc3dfb06.woff2",
     "static/media/la-solid-900.woff": "./static/media/la-solid-900.893634871a6cbff72157.woff",
@@ -60,8 +64,7 @@
     "static/media/img1.jpg": "./static/media/img1.add1c69603e041bb37a6.jpg",
     "static/media/img5.jpg": "./static/media/img5.add1c69603e041bb37a6.jpg",
     "static/media/fa-v4compatibility.ttf": "./static/media/fa-v4compatibility.52eba2c567c521b8d58a.ttf",
-    "static/media/Logo.png": "./static/media/Logo.33de9a1867a9b581890d.png",
-    "static/media/logo-300x57-1.png": "./static/media/logo-300x57-1.33de9a1867a9b581890d.png",
+    "static/media/Logo - Copy.png": "./static/media/Logo - Copy.33de9a1867a9b581890d.png",
     "static/media/logo.png": "./static/media/logo.33de9a1867a9b581890d.png",
     "static/media/fa-v4compatibility.woff2": "./static/media/fa-v4compatibility.3d503f89ccaf1b224aa5.woff2",
     "static/media/slick.svg": "./static/media/slick.2630a3e3eab21c607e21.svg",
@@ -79,11 +82,11 @@
     "static/media/ethereum-logo.svg": "./static/media/ethereum-logo.df265e367364f285053a1285ad8d418d.svg",
     "static/media/check.svg": "./static/media/check.00b7ce7137636f3f980c.svg",
     "static/media/re-arriw.svg": "./static/media/re-arriw.9255574c592cb8a99c66ab12deb242c7.svg",
-    "main.e05d1ca6.css.map": "./static/css/main.e05d1ca6.css.map",
-    "main.d895debd.js.map": "./static/js/main.d895debd.js.map"
+    "main.e08a5025.css.map": "./static/css/main.e08a5025.css.map",
+    "main.99c543cb.js.map": "./static/js/main.99c543cb.js.map"
   },
   "entrypoints": [
-    "static/css/main.e05d1ca6.css",
-    "static/js/main.d895debd.js"
+    "static/css/main.e08a5025.css",
+    "static/js/main.99c543cb.js"
   ]
 }
