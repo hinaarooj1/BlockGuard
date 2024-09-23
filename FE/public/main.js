@@ -1,6 +1,6 @@
 
 
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, screen } = require('electron');
 const path = require('path');
 async function createWindow() {
     const { width, height } = screen.getPrimaryDisplay().workAreaSize;

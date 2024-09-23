@@ -13,6 +13,22 @@
     --e-global-typography-accent-font-weight: 500;
 }
 
+.ansa:hover {
+    color: white !important;
+}
+
+.ansa {
+    font-size: 14px !important;
+    display: flex !important;
+    align-items: center !important;
+    background: var(--tg-white) !important;
+    color: var(--tg-black) !important;
+    font-weight: 700 !important;
+    gap: 12px !important;
+    padding: 15px 23px !important;
+    border-radius: 30px !important;
+}
+
 .elementor-section.elementor-section-boxed>.elementor-container {
     max-width: 1140px;
 }

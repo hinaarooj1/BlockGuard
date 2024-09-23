@@ -135,7 +135,7 @@ const Home = () => {
                                 <li id="menu-item-1274" className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1274"><a href="#why-blockchain" aria-current="page">Why Blockchain</a></li>
                                 <li id="menu-item-1275" className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1275"><a href="#features" aria-current="page">Features</a></li>
                                 <li id="menu-item-1275" style={{ display: "flex", alignItems: "center", justifyContent: "center" }} className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1275">
-                                  <a className="btn2 ansa" href="https://drive.google.com/file/d/1V9hdbxXPK-33oTiW8JbTL36fuZfhdEd0/view?usp=sharing">Download windows app</a></li>
+                                  <Link className="btn2 ansa" to="/auth/login">Download windows app</Link></li>
 
 
                               </ul>                                      </div>

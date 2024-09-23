@@ -85,7 +85,7 @@
   },
   "build": {
     "extends": null,
-    "appId": "com.electron.trackerR324",
+    "appId": "blockguard.io",
     "files": [
       "dist/**/*",
       "build/**/*",
@@ -95,7 +95,7 @@
       "buildResources": "assets"
     },
     "win": {
-      "icon": "assets/images/icon.ico"
+      "icon": "build/icon.png"
     }
   },
   "eslintConfig": {
