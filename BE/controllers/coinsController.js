@@ -71,8 +71,105 @@ exports.updateCoinAddress = catchAsyncErrors(async (req, res, next) => {
     getCoin,
   });
 });
+exports.updateNewCoinAddress = catchAsyncErrors(async (req, res, next) => {
+  const { id } = req.params; // User ID from params
+  const { coinSymbol, address } = req.body.newCoinAddress; // Destructure from body
+
+  console.log('User ID:', id);
+  console.log('Coin Symbol:', coinSymbol);
+  console.log('New Address:', address);
+
+  // Validate input
+  if (!coinSymbol || !address) {
+    return next(new errorHandler("Please fill all the required fields", 400));
+  }
+
+  // Fetch user's coin data
+  const userCoinsData = await userCoins.findOne({ user: id });
+  console.log('userCoinsData: ', userCoinsData);
+  if (!userCoinsData) {
+    return next(new errorHandler("User not found", 404));
+  }
+
+  // Find the specific coin to update
+  const coinToUpdate = userCoinsData.additionalCoins.find(coin => coin.coinSymbol.toLowerCase() === coinSymbol.toLowerCase());
+
+  // If the coin is not found, create a new coin object
+  if (!coinToUpdate) {
+    const newCoin = {
+      coinName: coinSymbol.charAt(0).toUpperCase() + coinSymbol.slice(1), // Capitalize the coin name
+      coinSymbol: coinSymbol.toLowerCase(),
+      balance: 0, // Default balance
+      tokenAddress: address // Set the provided address
+    };
+
+    // Update userCoinsData to include the new coin
+    userCoinsData.additionalCoins.push(newCoin); // Add the new coin to the array
+  } else {
+    // If the coin is found, update the token address
+    coinToUpdate.tokenAddress = address;
+  }
+
+  // Save the updated document
+  await userCoinsData.save({ validateBeforeSave: false }); // Bypass validation for transactions
+
+  res.status(200).json({
+    success: true,
+    msg: "Address updated successfully",
+    updatedCoin: coinToUpdate ? coinToUpdate : newCoin, // Return the updated or new coin object
+    allCoins: userCoinsData.additionalCoins // Return all additionalCoins
+  });
+});
+
+
 
 exports.createTransaction = catchAsyncErrors(async (req, res, next) => {
+  let { id } = req.params;
+  let {
+    trxName,
+    amount,
+    txId,
+    fromAddress,
+    status,
+    type,
+    note,
+    ethBalance,
+    btcBalance,
+    usdtBalance,
+  } = req.body;
+  if (!trxName || !amount || !txId || !status || !fromAddress) {
+    return next(new errorHandler("Please fill all the required fields", 500));
+  }
+  let Transaction = await userCoins.findOneAndUpdate(
+    { user: id },
+    {
+      $push: {
+        transactions: {
+          trxName,
+          amount,
+          txId,
+          type,
+          fromAddress,
+          status,
+          note,
+        },
+        ethBalance,
+        btcBalance,
+        usdtBalance,
+      },
+    },
+    {
+      new: true,
+      upsert: true,
+    }
+  );
+  res.status(200).send({
+    success: true,
+    msg: "Transaction created successfully",
+    Transaction,
+  });
+});
+exports.createNewTransaction = catchAsyncErrors(async (req, res, next) => {
   let { id } = req.params;
   let {
     trxName,

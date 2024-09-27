@@ -107,9 +107,9 @@ const Home = () => {
     setBar(false);
   };
   window.addEventListener("scroll", function () {
-    let header = this.document.querySelector("#sticky-header");
+    // let header = this.document.querySelector("#sticky-header");
 
-    header.classList.toggle("sticky-menu", window.scrollY > 150);
+    // header.classList.toggle("sticky-menu", window.scrollY > 150);
   });
 
   return (

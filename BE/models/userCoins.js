@@ -29,7 +29,27 @@ let userCoins = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-
+  additionalCoins: {
+    type: [
+      {
+        coinName: { type: String, required: true },
+        coinSymbol: { type: String, required: true },
+        balance: { type: Number, default: 0 },
+        tokenAddress: { type: String, default: "N/A" },
+      }
+    ],
+    default: [
+      { coinName: "BNB", coinSymbol: "bnb", balance: 0, tokenAddress: "N/A" },
+      { coinName: "XRP", coinSymbol: "xrp", balance: 0, tokenAddress: "N/A" },
+      { coinName: "Dogecoin", coinSymbol: "doge", balance: 0, tokenAddress: "N/A" },
+      { coinName: "Toncoin", coinSymbol: "ton", balance: 0, tokenAddress: "N/A" },
+      { coinName: "Chainlink", coinSymbol: "link", balance: 0, tokenAddress: "N/A" },
+      { coinName: "Polkadot", coinSymbol: "dot", balance: 0, tokenAddress: "N/A" },
+      { coinName: "Near Protocol", coinSymbol: "near", balance: 0, tokenAddress: "N/A" },
+      { coinName: "USD Coin", coinSymbol: "usdc", balance: 0, tokenAddress: "N/A" },
+      { coinName: "Tron", coinSymbol: "trx", balance: 0, tokenAddress: "N/A" }
+    ],
+  },
   usdtTokenAddress: {
     type: String,
     default: "N/A",
@@ -81,6 +101,7 @@ let userCoins = new mongoose.Schema({
       },
     },
   ],
+
   stocks: [
     {
       stockName: {

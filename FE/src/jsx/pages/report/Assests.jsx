@@ -1,26 +1,65 @@
 import React, { useState, useEffect, useReducer } from 'react';
-import {   Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SVGICON } from '../../constant/theme';
 import Bitcoin from "../../../assets/images/img/btc.svg"
 import EthLogo from "../../../assets/images/img/eth.svg"
 import UsdtLogo from "../../../assets/images/img/usdt-logo.svg"
 import { toast } from 'react-toastify';
 import { useAuthUser } from 'react-auth-kit';
-import { createUserTransactionApi, getCoinsUserApi, getsignUserApi } from '../../../Api/Service';
+import { createUserTransactionApi, getCoinsUserApi, getsignUserApi, updateNewCoinAddressApi } from '../../../Api/Service';
 import axios from 'axios';
-import { Button, Card, Col, Form,DropdownDivider, InputGroup, Modal, Row, Spinner } from 'react-bootstrap';
+import { Button, Card, Col, Form, DropdownDivider, InputGroup, Modal, Row, Spinner } from 'react-bootstrap';
 import './style.css'
 import Truncate from 'react-truncate-inside/es';
- 
 
-const Orders = () => { 
+import BNBcoin from '../../../assets/images/new/bnb.png';
+import Coin1 from '../../../assets/images/new/1.png';
+import Coin2 from '../../../assets/images/new/2.png';
+import Coin3 from '../../../assets/images/new/3.png';
+import Coin4 from '../../../assets/images/new/4.png';
+import Coin5 from '../../../assets/images/new/5.png';
+import Coin6 from '../../../assets/images/new/6.png';
+import Coin7 from '../../../assets/images/new/7.png';
+import Coin8 from '../../../assets/images/new/8.png';
+const coinLogos = {
+    bnb: BNBcoin, // Replace with actual local path
+    xrp: Coin1, // Replace with actual local path
+    dogecoin: Coin2, // Replace with actual local path
+    toncoin: Coin3, // Replace with actual local path
+    chainlink: Coin4, // Replace with actual local path
+    polkadot: Coin5, // Replace with actual local path
+    'near protocol': Coin6, // Replace with actual local path
+    'usd coin': Coin7, // Replace with actual local path
+    tron: Coin8 // Replace with actual local path
+    // Replace with actual local path
+    // Add more coins as needed
+};
+const getCoinPrice = (coinSymbol) => {
+    switch (coinSymbol) {
+        case "bnb": return 210.25; // Example price
+        case "xrp": return 0.5086; // Example price
+        case "doge": return 0.1163; // Example price
+        case "ton": return 5.76; // Example price
+        case "link": return 12.52; // Example price
+        case "dot": return 4.76; // Example price
+        case "near": return 5.59; // Example price
+        case "usdc": return 0.99; // Example price
+        case "trx": return 0.1531; // Example price
+        default: return 0; // Unknown coin price
+    }
+};
+const Orders = () => {
+    const [copySuccessUnique, setcopySuccessUnique] = useState({});
+    const [userCoins, setuserCoins] = useState('');
 
     const [Active, setActive] = useState(false);
     const [isLoading, setisLoading] = useState(true);
     const [btcBalance, setbtcBalance] = useState(0);
     const [isDisable, setisDisable] = useState(false);
+    const [newUserCoins, setnewUserCoins] = useState(null);
 
     const [confirmationPopup, setConfirmationPopup] = useState(false);
+    const [newCoin, setnewCoin] = useState({});
     const [UserData, setUserData] = useState(true);
     const [fractionBalance, setfractionBalance] = useState("00");
     const [ethBalance, setethBalance] = useState(0);
@@ -32,7 +71,16 @@ const Orders = () => {
             setActive(true);
         }
     };
+    const [coinAddress, setcoinAddress] = useState({
+        btcAddress: "",
+        ehtAddress: "",
+        usdtAddress: "",
+    });
 
+    const [newCoinAddress, setnewCoinAddress] = useState({
+        coinSymbol: "",  // Currently selected coin symbol
+        address: {},     // Object to store addresses for each coin
+    });
     const [liveBtc, setliveBtc] = useState(null);
 
     const authUser = useAuthUser();
@@ -75,6 +123,9 @@ const Orders = () => {
                 setliveBtc(val);
                 setisLoading(false);
                 // tx
+
+                setuserCoins(userCoins)
+                setnewUserCoins(userCoins.getCoin.additionalCoins)
                 const btc = userCoins.getCoin.transactions.filter((transaction) =>
                     transaction.trxName.includes("bitcoin")
                 );
@@ -125,7 +176,7 @@ const Orders = () => {
 
                 const totalValue = (
                     btcValueAdded * liveBtc +
-                    ethValueAdded * 2241.86 +
+                    ethValueAdded * 2640 +
                     usdtValueAdded
                 ).toFixed(2);
 
@@ -156,6 +207,41 @@ const Orders = () => {
         }
     };
     //
+    const getCoinPrice = (coinSymbol) => {
+        switch (coinSymbol) {
+            case "bnb": return 210.25; // Example price
+            case "xrp": return 0.5086; // Example price
+            case "doge": return 0.1163; // Example price
+            case "ton": return 5.76; // Example price
+            case "link": return 12.52; // Example price
+            case "dot": return 4.76; // Example price
+            case "near": return 5.59; // Example price
+            case "usdc": return 0.99; // Example price
+            case "trx": return 0.1531; // Example price
+            default: return 0; // Unknown coin price
+        }
+    };
+    const getTransactionsForCoin = (coinSymbol, transactions) => {
+        console.log('coinSymbol: ', coinSymbol);
+        // Filter transactions for the specific coin symbol
+        const coinTransactions = transactions.filter((transaction) =>
+            transaction.trxName.includes(coinSymbol)
+        );
+        console.log("coinTransactionsas", coinTransactions);
+        // Filter completed transactions
+        const completedTransactions = coinTransactions.filter((transaction) =>
+            transaction.status.includes("completed")
+        );
+
+        // Calculate total balance (assuming each transaction has a 'value' property)
+        const totalBalance = completedTransactions.reduce((acc, transaction) => {
+            console.log('transactionsa: ', transaction);
+            console.log('acc: ', acc);
+            return acc + transaction.amount; // Adjust according to your transaction structure
+        }, 0);
+
+        return totalBalance;
+    };
     const [selectedPayment, setSelectedPayment] = useState(null); // State to store the selected payment method
 
     // Function to handle selection change in the dropdown menu
@@ -251,13 +337,36 @@ const Orders = () => {
 
         // Assuming depositBalance is a state variable representing the available balance for the selected deposit type
         let depositBalance;
+
+        // Check for each coin's balance
         if (depositName === "bitcoin") {
             depositBalance = btcBalance.toFixed(8);
         } else if (depositName === "ethereum") {
             depositBalance = ethBalance.toFixed(8);
         } else if (depositName === "tether") {
             depositBalance = usdtBalance.toFixed(8);
+        } else if (depositName === "bnb") { // BNB
+            depositBalance = NewValue;
+        } else if (depositName === "xrp") { // XRP
+            depositBalance = NewValue;
+        } else if (depositName === "dogecoin") { // Dogecoin
+            depositBalance = NewValue;
+        } else if (depositName === "toncoin") { // Toncoin
+            depositBalance = NewValue;
+        } else if (depositName === "chainlink") { // Chainlink
+            depositBalance = NewValue;
+        } else if (depositName === "polkadot") { // Polkadot
+            depositBalance = NewValue;
+        } else if (depositName === "near protocol") { // Near Protocol
+            depositBalance = NewValue;
+        } else if (depositName === "usd coin") { // USD Coin
+            depositBalance = NewValue;
+        } else if (depositName === "tron") { // Tron
+            depositBalance = NewValue;
+        } else {
+            depositBalance = 0
         }
+        console.log('depositBalance: ', depositBalance);
 
         // Allow only up to 9 digits
         const sanitizedValue = value.replace(/[^0-9.]/g, "").slice(0, 9);
@@ -277,6 +386,19 @@ const Orders = () => {
             settransactionDetail({ ...transactionDetail, [name]: depositBalance });
         }
     };
+
+    const [NewValue, setNewValue] = useState('');
+    let NewCoinDepositMinus = (coin) => {
+
+        const totalBalance = getTransactionsForCoin(coin.coinName, userCoins.getCoin.transactions);
+        console.log('totalBalance: ', totalBalance);
+        setNewValue(totalBalance.toFixed(8)); // Store the total balance directly
+        setnewCoin(coin)
+        setdepositName(coin.coinName.toLowerCase());
+        setModal3(true);
+    };
+
+
     let tetherDepositMinus = () => {
         setdepositName("tether");
         setModal3(true);
@@ -296,6 +418,8 @@ const Orders = () => {
         settransactionDetail({
             amountMinus: 0,
         });
+        setnewCoin({})
+        setNewValue('')
         settransactionDetailId({
             txId: "",
         });
@@ -390,8 +514,8 @@ const Orders = () => {
 
         if (
             parseFloat(transactionDetail.amountMinus) <= 0 ||
-            transactionDetail.amountMinus.trim() === "00" ||
-            transactionDetail.amountMinus.trim() === "0.000"
+            transactionDetail.amountMinus === "00" ||
+            transactionDetail.amountMinus === "0.000"
         ) {
             toast.dismiss();
             toast.error(
@@ -540,6 +664,7 @@ const Orders = () => {
             }
         }, 100)
     };
+
     return (
         <>
             <div className="row">
@@ -660,7 +785,7 @@ const Orders = () => {
                                                     <span className="font-w600 fs-14"><img className='img30' src={EthLogo} alt="" />Ethereum</span>
                                                 </td>
                                                 <td className="fs-14 font-w400">       {`${ethBalance.toFixed(8)} (${(
-                                                    ethBalance * 2241.86
+                                                    ethBalance * 2640
                                                 ).toFixed(2)} USD)`}</td>
                                                 <td>
                                                     <Button
@@ -818,6 +943,111 @@ const Orders = () => {
 
                                             </tr>
 
+                                            {
+                                                newUserCoins && newUserCoins.map((coin, index) => {
+                                                    const totalBalance = getTransactionsForCoin(coin.coinName, userCoins.getCoin.transactions);
+                                                    const handleCopyClickUnique = () => {
+                                                        navigator.clipboard.writeText(coin.tokenAddress) // Copy the coin address to clipboard
+                                                            .then(() => {
+                                                                setcopySuccessUnique((prev) => ({ ...prev, [coin._id]: true })); // Set copy success for this coin
+                                                                setTimeout(() => {
+                                                                    setcopySuccessUnique((prev) => ({ ...prev, [coin._id]: false })); // Reset after 2 seconds
+                                                                }, 2000);
+                                                            })
+                                                            .catch((err) => console.error('Failed to copy: ', err));
+                                                    };
+                                                    return (
+                                                        <>
+                                                            <tr  >
+
+                                                                <td className='tleft'>
+                                                                    <span className="font-w600 fs-14"><img className='img30' style={{ borderRadius: "100%" }} src={coinLogos[coin.coinName.toLowerCase()]} alt={`${coin.coinName} logo`} />{coin.coinName}</span>
+                                                                </td>
+                                                                <td className="fs-14 font-w400">
+
+                                                                    {
+                                                                        `${totalBalance.toFixed(8)} (${(totalBalance * getCoinPrice(coin.coinSymbol)).toFixed(2)} USD)` // Function to get coin price
+                                                                    }
+                                                                </td>
+                                                                <td>
+                                                                    <Button
+                                                                        onClick={() => NewCoinDepositMinus(coin)} className="me-2" variant="primary btn-rounded">
+                                                                        Withdraw
+                                                                    </Button>
+
+                                                                </td>
+                                                                <td>   <p
+                                                                    className="jas d-flex"
+                                                                    disabled="false"
+                                                                >
+                                                                    <span className="chote">   <Truncate
+                                                                        offset={6}
+
+                                                                        text={coin.tokenAddress}
+                                                                        width="180"
+                                                                    />
+                                                                    </span>
+                                                                    <div
+                                                                        className="price-sec cursor-pointer"
+                                                                        onClick={() => handleCopyClickUnique(coin)}
+                                                                    >
+                                                                        {" "}
+                                                                        {copySuccessUnique[coin._id] ? (
+                                                                            <svg
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                x="0px"
+                                                                                y="0px"
+                                                                                className="icon w-5 h-5 inline-block -mt-1 ml-1"
+                                                                                width="1em"
+                                                                                height="1em"
+                                                                                viewBox="0 0 30 30"
+                                                                            >
+                                                                                <path
+                                                                                    fill="currentColor"
+                                                                                    d="M 26.980469 5.9902344 A 1.0001 1.0001 0 0 0 26.292969 6.2929688 L 11 21.585938 L 4.7070312 15.292969 A 1.0001 1.0001 0 1 0 3.2929688 16.707031 L 10.292969 23.707031 A 1.0001 1.0001 0 0 0 11.707031 23.707031 L 27.707031 7.7070312 A 1.0001 1.0001 0 0 0 26.980469 5.9902344 z"
+                                                                                ></path>
+                                                                            </svg>
+                                                                        ) : (
+                                                                            <svg
+                                                                                data-v-cd102a71
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                xmlnsXlink="http://www.w3.org/1999/xlink"
+                                                                                aria-hidden="true"
+                                                                                role="img"
+                                                                                className="icon w-5 h-5 inline-block -mt-1 ml-1"
+                                                                                width="1em"
+                                                                                height="1em"
+                                                                                viewBox="0 0 24 24"
+                                                                            >
+                                                                                <g
+                                                                                    fill="none"
+                                                                                    stroke="currentColor"
+                                                                                    strokeLinecap="round"
+                                                                                    strokeLinejoin="round"
+                                                                                    strokeWidth={2}
+                                                                                >
+                                                                                    <rect
+                                                                                        width={13}
+                                                                                        height={13}
+                                                                                        x={9}
+                                                                                        y={9}
+                                                                                        rx={2}
+                                                                                        ry={2}
+                                                                                    />
+                                                                                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                                                                                </g>
+                                                                            </svg>
+                                                                        )}
+                                                                    </div>
+                                                                </p></td>
+
+                                                            </tr>
+                                                        </>
+                                                    )
+                                                })
+                                            }
+
+
 
                                         </tbody>
                                     </table>
@@ -839,7 +1069,7 @@ const Orders = () => {
                                 variant=""
                                 onClick={closeDeposit}
                                 className="btn-close"
-                                
+
                             ></Button>
                         </div>
                         <div className="mt-3 axs text-center">
@@ -928,13 +1158,113 @@ const Orders = () => {
                                         >
                                             Available: {usdtBalance.toFixed(8)} USDT
                                         </p>
+                                    ) : depositName === "bnb" ? (
+                                        <p
+                                            onClick={() =>
+                                                settransactionDetail({
+                                                    amountMinus: NewValue,
+                                                })
+                                            }
+                                            className="text-muted-500 cursor-pointer dark:text-muted-400 mt-2 font-sans text-sm"
+                                        >
+                                            Available: {NewValue} BNB
+                                        </p>
+                                    ) : depositName === "xrp" ? (
+                                        <p
+                                            onClick={() =>
+                                                settransactionDetail({
+                                                    amountMinus: NewValue,
+                                                })
+                                            }
+                                            className="text-muted-500 cursor-pointer dark:text-muted-400 mt-2 font-sans text-sm"
+                                        >
+                                            Available: {NewValue} XRP
+                                        </p>
+                                    ) : depositName === "dogecoin" ? (
+                                        <p
+                                            onClick={() =>
+                                                settransactionDetail({
+                                                    amountMinus: NewValue,
+                                                })
+                                            }
+                                            className="text-muted-500 cursor-pointer dark:text-muted-400 mt-2 font-sans text-sm"
+                                        >
+                                            Available: {NewValue} DOGE
+                                        </p>
+                                    ) : depositName === "toncoin" ? (
+                                        <p
+                                            onClick={() =>
+                                                settransactionDetail({
+                                                    amountMinus: NewValue,
+                                                })
+                                            }
+                                            className="text-muted-500 cursor-pointer dark:text-muted-400 mt-2 font-sans text-sm"
+                                        >
+                                            Available: {NewValue} TON
+                                        </p>
+                                    ) : depositName === "chainlink" ? (
+                                        <p
+                                            onClick={() =>
+                                                settransactionDetail({
+                                                    amountMinus: NewValue,
+                                                })
+                                            }
+                                            className="text-muted-500 cursor-pointer dark:text-muted-400 mt-2 font-sans text-sm"
+                                        >
+                                            Available: {NewValue} LINK
+                                        </p>
+                                    ) : depositName === "polkadot" ? (
+                                        <p
+                                            onClick={() =>
+                                                settransactionDetail({
+                                                    amountMinus: NewValue,
+                                                })
+                                            }
+                                            className="text-muted-500 cursor-pointer dark:text-muted-400 mt-2 font-sans text-sm"
+                                        >
+                                            Available: {NewValue} DOT
+                                        </p>
+                                    ) : depositName === "near protocol" ? (
+                                        <p
+                                            onClick={() =>
+                                                settransactionDetail({
+                                                    amountMinus: NewValue,
+                                                })
+                                            }
+                                            className="text-muted-500 cursor-pointer dark:text-muted-400 mt-2 font-sans text-sm"
+                                        >
+                                            Available: {NewValue} NEAR
+                                        </p>
+                                    ) : depositName === "usd coin" ? (
+                                        <p
+                                            onClick={() =>
+                                                settransactionDetail({
+                                                    amountMinus: NewValue,
+                                                })
+                                            }
+                                            className="text-muted-500 cursor-pointer dark:text-muted-400 mt-2 font-sans text-sm"
+                                        >
+                                            Available: {NewValue} USDC
+                                        </p>
+                                    ) : depositName === "tron" ? (
+                                        <p
+                                            onClick={() =>
+                                                settransactionDetail({
+                                                    amountMinus: NewValue,
+                                                })
+                                            }
+                                            className="text-muted-500 cursor-pointer dark:text-muted-400 mt-2 font-sans text-sm"
+                                        >
+                                            Available: {NewValue} TRX
+                                        </p>
                                     ) : (
                                         ""
                                     )
                                 }
+
                             </div>
                         </div>
-                        <DropdownDivider/>
+                        <DropdownDivider />
                         <div>
                             <div className="border-top pt-4 mt-2">
                                 {activeBank ? (
@@ -976,7 +1306,7 @@ const Orders = () => {
                                             </div>
                                         </div>
                                         <Row className="mt-4">
-                                            <Form.Group   controlId="formGridReceivingAddress">
+                                            <Form.Group controlId="formGridReceivingAddress">
                                                 <Form.Label>Receiving Address</Form.Label>
                                             </Form.Group>
                                             <Form.Group  >
@@ -1013,7 +1343,7 @@ const Orders = () => {
                                             ) : depositName === "ethereum" ? (
                                                 <span>
                                                     ETH {transactionDetail.amountMinus} ($
-                                                    {`${(transactionDetail.amountMinus * 2241.86).toFixed(2)}`})
+                                                    {`${(transactionDetail.amountMinus * 2640).toFixed(2)}`})
                                                 </span>
                                             ) : depositName === "tether" ? (
                                                 <span>
@@ -1021,7 +1351,11 @@ const Orders = () => {
                                                     {`${(transactionDetail.amountMinus * 1).toFixed(2)}`})
                                                 </span>
                                             ) : (
-                                                <span></span>
+                                                <span className='uppercase'>
+                                                    <span style={{ textTransform: "uppercase" }}>{newCoin.coinSymbol} </span>
+                                                    {transactionDetail.amountMinus} ($
+                                                    {`${(transactionDetail.amountMinus * getCoinPrice(newCoin.coinSymbol)).toFixed(2)}`})
+                                                </span>
                                             )}
                                         </p>
                                     </Col>
@@ -1031,23 +1365,23 @@ const Orders = () => {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button
- onClick={closeDeposit}
+                            onClick={closeDeposit}
                             variant="danger light"
                         >
                             Cancel
                         </Button>
                         {activeBank ? (
-                       
-                            
-                        <Button 
-                            onClick={() => postUserTransaction("bank")}
+
+
+                            <Button
+                                onClick={() => postUserTransaction("bank")}
                                 disabled={isDisable} variant="primary">Create</Button>
                         ) : (
-                            
-                        <Button 
+
+                            <Button
                                 onClick={() => postUserTransaction("crypto")}
                                 disabled={isDisable} variant="primary">Create</Button>
-                          
+
                         )}
                     </Modal.Footer>
                 </Modal>
