@@ -27,6 +27,15 @@ const TransactionSec = () => {
     let authUser = useAuthUser();
     let Navigate = useNavigate();
     const [Active, setActive] = useState(false);
+    const [copiedSec, setCopiedSec] = useState(false);
+
+    // Function to copy the reference number
+    const handleCopySec = () => {
+        navigator.clipboard.writeText(singleTransaction.reference).then(() => {
+            setCopiedSec(true); // Set copiedSec to true when the text is copiedSec
+            setTimeout(() => setCopiedSec(false), 2000); // Revert back after 2 seconds
+        });
+    };
 
     const [isUser, setIsUser] = useState({});
     const getsignUser = async () => {
@@ -596,9 +605,42 @@ const TransactionSec = () => {
                                     ) : (
                                         <span className="text-muted">Unknown</span>
                                     )}
-                                    <span className="text-muted ml-2">{singleTransaction.note}</span>
                                 </dd>
+
                             </div>
+                            {singleTransaction.note ?
+
+                                <div className="col-sm-6">
+                                    <dt className="text-muted">Note</dt>
+                                    <dd className="text-dark">
+
+
+                                        <span className="text-muted ms-2">{singleTransaction.note}</span>
+                                    </dd>
+                                </div> : ""
+                            }
+                            {singleTransaction.reference ?
+
+                                <div className="col-sm-6">
+                                    <dt className="text-muted">Reference Number</dt>
+                                    <dd className="text-dark">
+
+                                        <span className="text-muted ml-2">{singleTransaction.reference}</span>     <span onClick={handleCopySec} className="cursor-pointer ml-1">
+                                            {copiedSec ? (
+
+                                                "copied!"
+                                            ) : (
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="icon w-5 h-5 inline-block -mt-1 ml-1" viewBox="0 0 24 24">
+                                                    <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}>
+                                                        <rect width={13} height={13} x={9} y={9} rx={2} ry={2} />
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                                                    </g>
+                                                </svg>
+                                            )}
+                                        </span>
+                                    </dd>
+                                </div> : ""
+                            }
                         </dl>
                     </Modal.Body>) : (
                     <Modal.Body>
@@ -846,9 +888,41 @@ const TransactionSec = () => {
                                     ) : (
                                         <span className="text-muted">Unknown</span>
                                     )}
-                                    <span className="text-muted ms-2">{singleTransaction.note}</span>
                                 </dd>
                             </div>
+                            {singleTransaction.note ?
+
+                                <div className="col-sm-6">
+                                    <dt className="text-muted">Note</dt>
+                                    <dd className="text-dark">
+
+
+                                        <span className="text-muted ms-2">{singleTransaction.note}</span>
+                                    </dd>
+                                </div> : ""
+                            }
+                            {singleTransaction.reference ?
+
+                                <div className="col-sm-6">
+                                    <dt className="text-muted">Reference Number</dt>
+                                    <dd className="text-dark">
+
+                                        <span className="text-muted ml-2">{singleTransaction.reference}</span>     <span onClick={handleCopySec} className="cursor-pointer ml-1">
+                                            {copiedSec ? (
+
+                                                "copied!"
+                                            ) : (
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="icon w-5 h-5 inline-block -mt-1 ml-1" viewBox="0 0 24 24">
+                                                    <g fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}>
+                                                        <rect width={13} height={13} x={9} y={9} rx={2} ry={2} />
+                                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+                                                    </g>
+                                                </svg>
+                                            )}
+                                        </span>
+                                    </dd>
+                                </div> : ""
+                            }
                         </dl>
                     </Modal.Body>)}
 

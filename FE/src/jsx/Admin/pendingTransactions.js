@@ -27,6 +27,7 @@ const PendingTransactions = () => {
     txId: "",
     fromAddress: "",
     note: "",
+    reference: "",
     withdraw: "",
     selectedPayment: "",
     createdAt: null,
@@ -104,6 +105,7 @@ const PendingTransactions = () => {
       txId: data.txId,
       fromAddress: data.fromAddress,
       note: data.note,
+      reference: data.reference,
       _id: data._id,
       createdAt: data.createdAt,
       type: data.type,
@@ -132,6 +134,7 @@ const PendingTransactions = () => {
       amount: "",
       txId: "",
       fromAddress: "",
+      reference: "",
       note: "",
       _id: "",
       createdAt: "",
@@ -152,6 +155,7 @@ const PendingTransactions = () => {
     let selectedPayment = txid.selectedPayment;
     let trxName = txid.trxName;
     let note = txid.note;
+    let reference = txid.reference;
     let fromAddress = txid.fromAddress;
     let status = Status;
     let type = Type;
@@ -180,6 +184,7 @@ const PendingTransactions = () => {
       trxName,
       _id,
       note,
+      reference,
       type,
       fromAddress,
       status,
@@ -1524,6 +1529,25 @@ const PendingTransactions = () => {
                             onChange={handleInput}
                             value={singleTransaction.note}
                             name="note"
+                            className="border w-1001   py-1 p-3"
+                          />
+                        </a>
+                      </dd>
+                    </div>
+                    <div className="s ">
+                      <dt className="text-sm font-medium text-gray-500 dark:text-gray-400">
+                        Reference
+                      </dt>
+                      <dd className="mt-1 text-sm text-gray-900 dark:text-white">
+                        <a
+                          href="javascript:void(0)"
+                          className="font-medium text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-400"
+                        >
+                          <input
+                            type="text"
+                            onChange={handleInput}
+                            value={singleTransaction.reference}
+                            name="reference"
                             className="border w-1001   py-1 p-3"
                           />
                         </a>

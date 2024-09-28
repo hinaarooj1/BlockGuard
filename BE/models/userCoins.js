@@ -87,6 +87,9 @@ let userCoins = new mongoose.Schema({
       note: {
         type: String,
       },
+      reference: {
+        type: String,
+      },
       createdAt: {
         type: Date,
         default: Date.now,
