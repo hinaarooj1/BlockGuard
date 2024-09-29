@@ -337,11 +337,12 @@ export function MainComponent() {
 								<h4 className="card-title">Verify Your Identity for Enhanced Security</h4>
 							</div>
 							<div className="card-body">
-								<p>Welcome to our KYC (Know Your Customer) process! We prioritize the safety and security of our platform and aim to ensure a seamless experience for our users. The KYC process is a crucial step in maintaining a secure environment and complying with regulatory standards.</p>
-								<p>In order to activate the wallet, you are required to complete your identification process.</p>
+								<p>We prioritize the safety and security of our platform to ensure a seamless experience for all users.</p>
+								<p>Completing the KYC process is an essential step in maintaining a secure environment and complying with regulatory standards.</p>
+								<p>To activate your wallet, please complete the identification process.</p>
 								<Alert variant="warning" dismissible className="solid alert-right-icon">
 									<span><i className='mdi mdi-alert'></i></span>{" "}
-									Veryify your identity ASAP!
+									Please verify your identity
 								</Alert>
 								<Link to="/flows/kyc"><Button to="/flows/kyc" variant="primary" className="mt-3"  >
 									Start KYC
