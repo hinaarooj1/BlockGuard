@@ -163,10 +163,10 @@ const useMenuList = () => {
 
         },
         {
-            title: 'Exchange',
+            title: 'Exchanges',
             classsChange: 'mm-active',
-            to: '/exchange',
-            iconStyle: <i class="fa-solid fa-arrow-right-arrow-left"></i>,
+            to: '/exchanges',
+            iconStyle: <span class="fa-solid fa-arrow-right-arrow-left faris"></span>,
 
         },
         {

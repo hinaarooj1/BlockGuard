@@ -95,7 +95,7 @@ export default function Router() {
             }
           />
           <Route
-            path="/exchange"
+            path="/exchanges"
             element={
               <RequireAuth loginPath={"/auth/login"}>
                 <Exchange />
