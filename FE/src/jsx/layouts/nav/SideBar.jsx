@@ -100,11 +100,7 @@ const SideBar = () => {
               </Link>
             </div>
           </div>
-          <div className="copyright">
-            <p>
-              <strong>Fintch</strong> © <span className="current-year">{Latest.getFullYear()}</span> All Rights Reserved
-            </p>
-          </div>
+
           <br />
           <br />
           <br />
