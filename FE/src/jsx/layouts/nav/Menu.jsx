@@ -163,6 +163,13 @@ const useMenuList = () => {
 
         },
         {
+            title: 'Exchange',
+            classsChange: 'mm-active',
+            to: '/exchange',
+            iconStyle: <i class="fa-solid fa-arrow-right-arrow-left"></i>,
+
+        },
+        {
             title: 'Payment Methods',
             classsChange: 'mm-active',
             to: '/account',

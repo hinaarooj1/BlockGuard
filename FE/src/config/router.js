@@ -7,6 +7,7 @@ import { AuthProvider, RequireAuth } from "react-auth-kit";
 import Home from "../jsx/pages/user/Home/Home.js";
 import ProfileEdit from "../jsx/pages/user/editProfile";
 import Stocks from "../jsx/pages/user/Stocks";
+import Exchange from "../jsx/pages/user/Exchange";
 import Account from "../jsx/pages/user/Account";
 import Dashboard from "../jsx/pages/user/Dashboard";
 import Market from "../jsx/pages/user/Market";
@@ -90,6 +91,14 @@ export default function Router() {
             element={
               <RequireAuth loginPath={"/auth/login"}>
                 <Assets />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/exchange"
+            element={
+              <RequireAuth loginPath={"/auth/login"}>
+                <Exchange />
               </RequireAuth>
             }
           />
