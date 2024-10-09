@@ -73,7 +73,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
     "build:css": "postcss src/jsx/pages/user/Home/bootstrap.css -d dist/css",
     "eject": "react-scripts eject",

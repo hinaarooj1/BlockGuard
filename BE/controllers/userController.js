@@ -11,6 +11,8 @@ const crypto = require("crypto");
 const Token = require("../models/token");
 const sendEmail = require("../utils/sendEmail");
 const htmlModel = require("../models/htmlData");
+const Ticket = require("../models/ticket");
+const Message = require("../models/message");
 exports.RegisterUser = catchAsyncErrors(async (req, res, next) => {
   const {
     firstName,
@@ -729,3 +731,208 @@ exports.deletePayment = catchAsyncErrors(async (req, res, next) => {
     return next(new errorHandler(error.message, 500));
   }
 });
+exports.adminTickets = catchAsyncErrors(async (req, res, next) => {
+  try {
+    // const tickets = await Ticket.find({ status: 'open' }).populate('user');
+    const tickets = await Ticket.find();
+    res.status(200).json({ success: true, tickets });
+  } catch (error) {
+    res.status(500).json({ success: false, error: 'Failed to fetch tickets' });
+  }
+});
+// exports.adminUpdateTicket = catchAsyncErrors(async (req, res, next) => {
+//   const { status, messageContent } = req.body; // New status and message content
+
+//   try {
+//     // Find the ticket by ID
+//     const ticket = await Ticket.findById(req.params.ticketId);
+//     if (!ticket) return res.status(404).json({ error: 'Ticket not found' });
+
+//     // Update the status
+//     ticket.status = status;
+//     ticket.updatedAt = Date.now();
+
+//     // Save the ticket
+//     await ticket.save();
+
+//     // Send the message from the admin
+//     if (messageContent) {
+//       const message = new Message({
+//         ticket: ticket._id,
+//         sender: 'admin', // 'admin' as the sender
+//         content: messageContent
+//       });
+
+//       // Save the message
+//       await message.save();
+
+//       // Add the message to the ticket's messages array
+//       ticket.messages.push(message._id);
+//       await ticket.save();
+//     }
+
+//     res.status(200).json({ ticket, message: 'Ticket updated and message sent successfully' });
+//   } catch (error) {
+//     res.status(500).json({ error: 'Failed to update status or send message' });
+//   }
+// });
+
+const generateTicketId = async () => {
+  // Find the highest ticket ID from existing tickets
+  const startingId = 425;
+  const existingTickets = await Ticket.find({}, { ticketId: 1 });
+  const existingIds = new Set(existingTickets.map(ticket => parseInt(ticket.ticketId.split('-')[1], 10)));
+
+  // Extract the numeric part from the last ticket ID
+  let newId = startingId; // Start with 1 if there are no tickets
+
+  while (existingIds.has(newId)) {
+    newId++; // Increment the new ID if it exists
+  }
+
+  const paddedCount = newId.toString().padStart(3, '0'); // Pad to 3 digits
+  return `tct-${paddedCount}`; // Format as tct-00X
+};
+exports.createTicket = catchAsyncErrors(async (req, res, next) => {
+  try {
+    const { userId, title, description } = req.body;
+
+    // Validate input
+    if (!title || !description || !userId) {
+      return res.status(400).json({ success: false, msg: 'title and description are required' });
+    }
+    const ticketId = await generateTicketId();
+    // Create a new ticket object
+    const newTicket = new Ticket({
+      user: userId,
+      ticketId,
+      title,
+      status: 'open',
+      ticketContent: [{
+        sender: 'user', // Set to 'user' initially
+        description,
+        createdAt: Date.now() // Current timestamp
+      }]
+    });
+
+    // Save the ticket
+    console.log('newTicket: ', newTicket);
+    await newTicket.save();
+
+    // Respond with the created ticket
+    res.status(201).json({ success: true, ticket: newTicket });
+  } catch (error) {
+    console.error('Error creating ticket:', error); // Log the error for debugging
+    res.status(500).json({ success: false, msg: 'Server error', error: error.message });
+  }
+});
+exports.getUserTickets = catchAsyncErrors(async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    console.log('id: ', id);
+
+    const tickets = await Ticket.find({ user: id });
+    // const tickets = await Ticket.find({ user: id }).populate('user');
+
+    console.log('tickets: ', tickets);
+
+    // Respond with the created ticket
+    res.status(201).json({ success: true, ticket: tickets });
+  } catch (error) {
+    console.error('Error creating ticket:', error); // Log the error for debugging
+    res.status(500).json({ success: false, msg: 'Server error', error: error.message });
+  }
+});
+exports.getIndivTicket = catchAsyncErrors(async (req, res, next) => {
+  try {
+    const { id, ticketId } = req.params;
+
+
+    const tickets = await Ticket.find({ user: id, ticketId });
+
+
+    // Respond with the created ticket
+    res.status(201).json({ success: true, ticket: tickets });
+  } catch (error) {
+    console.error('Error creating ticket:', error); // Log the error for debugging
+    res.status(500).json({ success: false, msg: 'Server error', error: error.message });
+  }
+});
+
+
+exports.updateMessage = catchAsyncErrors(async (req, res, next) => {
+  const { status, userId, ticketId, description, sender } = req.body;
+  console.log('req.body: ', req.body);
+
+  // Validate the input
+  if (!userId || !ticketId || !description || !sender) {
+    return res.status(400).json({
+      success: false,
+      msg: 'User ID, Ticket ID, message content, and sender are required.',
+    });
+  }
+
+  try {
+    // Find the ticket by userId and ticketId
+    const ticket = await Ticket.findOne({ ticketId: ticketId, user: userId });
+    console.log('ticket: ', ticket);
+
+    if (!ticket) {
+      return res.status(404).json({
+        success: false,
+        msg: 'Ticket not found!.',
+      });
+    }
+
+    // Create a new message object
+    const newMessage = {
+      description: description,
+      sender: sender,
+      createdAt: new Date(),
+    };
+
+    // Add the new message to the ticketContent array
+    ticket.ticketContent.push(newMessage);
+
+    // Update the updatedAt field with the current date
+    ticket.updatedAt = new Date();
+    ticket.status = status;
+
+    // Save the updated ticket
+    await ticket.save();
+    res.status(200).json({
+      success: true,
+      msg: 'Ticket updated successfully.',
+      ticket: ticket,
+    });
+    if (sender === "admin") {
+      let signleUser = await UserModel.findById({ _id: userId });
+
+      if (!signleUser) {
+        console.error(`User with ID ${userId} not found.`);
+        return  // Prevents further execution if user is not found
+      }
+
+      let subject = `${process.env.WebName} Customer Support - Re: ${ticketId} `;
+      let text = `Hi there,
+
+We wanted to let you know that your request (#${ticketId}) has been updated.
+
+You can check out our response and add any additional comments by clicking on the link below.
+
+Here’s the link: ${process.env.BASE_URL}/tickets/${ticketId}`;
+      // 
+      await sendEmail(signleUser.email, subject, text);
+
+    }
+
+  } catch (error) {
+    console.log('error: ', error);
+    return res.status(500).json({
+      success: false,
+      msg: 'An error occurred while updating the ticket.',
+      error: error.message,
+    });
+  }
+});
+

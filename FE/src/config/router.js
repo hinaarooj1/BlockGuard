@@ -30,16 +30,22 @@ import General from "../jsx/Admin/SingleUser/Generalmain.js";
 import UserAssets from "../jsx/Admin/SingleUser/UserAssets";
 import UserTransactions from "../jsx/Admin/SingleUser/UserTransactions";
 import AdminProfile from "../jsx/Admin/adminProfile";
+import TicketDetails from "../jsx/Admin/TicketDetails";
+import SupportTickets from "../jsx/Admin/SupportTickets";
 import FileUpload from "../jsx/Admin/fileUpload";
 import AddUser from "../jsx/Admin/AddUser";
 import UserDocs from "../jsx/Admin/SingleUser/UserDocs";
 import UseApplyBodyStyles from "./hookUpdate.js";
+import CreateTicketpg from "../jsx/pages/user/createTicketpg.js";
+import AllTicket from "../jsx/pages/user/AllTicket.js";
+import ScrollToTop from "./top.js";
 export default function Router() {
 
   return (
     <AuthProvider authType={"localstorage"} authName={"auth"}>
       <BrowserRouter>
         <UseApplyBodyStyles />
+        <ScrollToTop />
         <Routes>
           <Route index path="/" element={<Home />} />{" "}
           <Route path="/auth/login" element={<Login />} />{" "}
@@ -143,6 +149,22 @@ export default function Router() {
             }
           />
           <Route
+            path="/create-ticket"
+            element={
+              <RequireAuth loginPath={"/auth/login"}>
+                <CreateTicketpg />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/tickets/:ticketId"
+            element={
+              <RequireAuth loginPath={"/auth/login"}>
+                <AllTicket />
+              </RequireAuth>
+            }
+          />
+          <Route
             path="/flows/kyc"
             element={
               <RequireAuth loginPath={"/auth/login"}>
@@ -187,6 +209,22 @@ export default function Router() {
             element={
               <RequireAuth loginPath={"/auth/login"}>
                 <AdminProfile />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/admin/support"
+            element={
+              <RequireAuth loginPath={"/auth/login"}>
+                <SupportTickets />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/admin/ticket/user/:id/:ticketId"
+            element={
+              <RequireAuth loginPath={"/auth/login"}>
+                <TicketDetails />
               </RequireAuth>
             }
           />

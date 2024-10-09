@@ -128,3 +128,18 @@ export const addCardApi = (id, data) => {
 export const deletePaymentApi = (id, pId) => {
   return getApi(`deletePayment/${id}/${pId}`);
 };
+export const createTicketApi = (data) => {
+  return postApi(`createTicket`, data);
+};
+export const getUserTicketsApi = (id) => {
+  return getApi(`getUserTickets/${id}`);
+};
+export const getIndivTicketApi = (id, ticketId) => {
+  return getApi(`getIndivTicket/${id}/${ticketId}`);
+};
+export const adminTicketsApi = () => {
+  return getApi(`admin/tickets`);
+};
+export const updateMessageApi = (ticketData) => {
+  return patchApi(`updateMessage`, ticketData);
+};
