@@ -1111,3 +1111,16 @@ body {
   text-decoration: underline !important;
 
 }
+
+@media (max-width:500px) {
+
+  .maxp,
+  .tleft {
+    max-width: 250px !important;
+  }
+
+  .tbb,
+  .tbleas {
+    width: max-content !important;
+  }
+}

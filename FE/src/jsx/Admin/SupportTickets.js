@@ -126,7 +126,7 @@ const AllTicket = () => {
 
                                 {/* Display filtered tickets */}
                                 <div className="table-responsive">
-                                    <table className="table table-bordered">
+                                    <table className="table tbb table-bordered">
                                         <thead>
                                             <tr className='taj'>
                                                 <th>Ticket ID</th>
@@ -143,7 +143,7 @@ const AllTicket = () => {
                                                 filteredTickets.map((ticket, index) => (
                                                     <tr className='tram' key={index}>
                                                         <td>{ticket.ticketId}</td>
-                                                        <td className='lefts'>{ticket.title}</td>
+                                                        <td className='lefts maxp'>{ticket.title}</td>
                                                         <td>
                                                             {ticket.status === 'open' ? (
                                                                 <span className="badge-open badgea">Open</span>

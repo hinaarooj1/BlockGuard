@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './AllTicket.css'; // Import your custom CSS
 // import profilePic from './path_to_your_profile_picture.jpg'; // Update the path to your profile picture
 import profile from "../../../assets/images/7309681.jpg";
@@ -14,6 +14,8 @@ import { toast } from 'react-toastify';
 import TicketHeader from './TicketHeader';
 
 const AllTicket = () => {
+
+    const messagesEndRef = useRef(null);
     let Navigate = useNavigate()
     const authUser = useAuthUser();
     const [isDisable, setIsDisable] = useState(false);
@@ -160,7 +162,11 @@ const AllTicket = () => {
         const daysSinceLastActivity = differenceInDays(currentDate, lastActivityDate);
         return daysSinceLastActivity > 30; // Ticket is closed if last activity was more than 30 days ago
     };
-
+    useEffect(() => {
+        if (messagesEndRef.current) {
+            messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [messages]);
     return (
         <>
             <TicketHeader Admin={Admin} />
@@ -176,7 +182,7 @@ const AllTicket = () => {
                         {/* Ticket Section */}
                         <div className="row">
                             {/* Left Side: Ticket Messages */}
-                            <div className="col-md-8">
+                            <div className="col-md-8 mb-3">
                                 <h2 className="mb-4   fla"><span style={{ marginRight: "20px", cursor: "pointer" }} onClick={() => Navigate("/support")}><i style={{ fontSize: "23px" }} className="fa-solid fa-arrow-left"></i> </span>{Ticket.title}
 
                                     {Ticket.status === "open" ?
@@ -208,6 +214,8 @@ const AllTicket = () => {
                                                 <p className="card-text"><small className="text-muted">{formatDate(message.createdAt)}</small></p>
                                             </div>
                                         </div>
+
+                                        <div ref={messagesEndRef} />
                                     </div>
                                 ))}
                                 {/* Ticket Message */}

@@ -135,7 +135,7 @@ const Support = () => {
         <>
             <div className="row">
                 <div className="col-xxl-12">
-                    <div className="card">
+                    <div className="card mt-2">
                         <Card.Header>
                             <Card.Title>My tickets</Card.Title>
                             <Card.Title> <Button onClick={() => Navigate("/create-ticket")}
