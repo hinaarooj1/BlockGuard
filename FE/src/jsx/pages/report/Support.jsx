@@ -149,7 +149,7 @@ const Support = () => {
                                     <table style={{ textAlign: "center" }} className="table tbleas tickettable display mb-4 no-footer" id="example6">
                                         <tbody>
                                             <tr>
-                                                <td colSpan="5">
+                                                <td style={{ textAlign: "center" }} colSpan="5">
                                                     <div className="spinner-grow" role="status">
                                                         <span className="visually-hidden">Loading...</span> {/* Updated for Bootstrap 5 */}
                                                     </div>
