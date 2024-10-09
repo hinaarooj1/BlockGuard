@@ -164,11 +164,11 @@ const Home = () => {
                   </div>
                   <div className="menu-outer">
                     {/*Here Menu Will Come Automatically Via Javascript / Same Menu as in Header*/}
-                    <ul id="menu-1-8e54fb7" className="navigation"><li id="menu-item-1270" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-144 current_page_item menu-item-1270"><a href="#" aria-current="page">Home</a></li>
-                      <li id="menu-item-1274" className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1274"><a href="#why-blockchain" aria-current="page">Why Blockchain</a></li>
-                      <li id="menu-item-1275" className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1275"><a href="#features" aria-current="page">Features</a></li>
+                    <ul id="menu-1-8e54fb7" className="navigation"><li id="menu-item-1270" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-144 current_page_item menu-item-1270"><a onClick={closeMenu} href="#" aria-current="page">Home</a></li>
+                      <li id="menu-item-1274" className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1274"><a onClick={closeMenu} href="#why-blockchain" aria-current="page">Why Blockchain</a></li>
+                      <li id="menu-item-1275" className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1275"><a onClick={closeMenu} href="#features" aria-current="page">Features</a></li>
 
-                      <li id="menu-item-1272" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-1272"><Link to="auth/login">Sign in</Link></li>
+                      <li id="menu-item-1272" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-1272"><Link onClick={closeMenu} to="auth/login">Sign in</Link></li>
                     </ul>                                      </div>
                   <div className="social-links">
                     <ul className="clearfix list-wrap">
