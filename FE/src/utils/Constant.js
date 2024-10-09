@@ -4,6 +4,6 @@ module.exports = {
   // Local server
   // Official server
   // baseUrl: "https://blockguard-gzgm.onrender.com/api/v1",
-  // baseUrl: "https://blockguard.onrender.com/api/v1",
+  baseUrl: "https://blockguard.onrender.com/api/v1",
   // Official server
 };
