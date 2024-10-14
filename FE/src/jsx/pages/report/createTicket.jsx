@@ -137,12 +137,12 @@ const CreateTicket = () => {
                                     </div>
                                     <div>
                                         <h3 className="h5 font-weight-semibold">Create New Ticket</h3>
-                                        <p className="text-muted">Fill in the form below to create a new ticket</p>
+                                        <p className="text-muted">Fill in the form below to create a new ticket.</p>
                                     </div>
                                 </div>
                                 <Form>
                                     <Form.Group className="mb-4">
-                                        <Form.Label htmlFor="title">Ticket title</Form.Label>
+                                        <Form.Label htmlFor="title">Title</Form.Label>
                                         <Form.Control
                                             id="title"
                                             type="text"
@@ -153,14 +153,14 @@ const CreateTicket = () => {
                                         />
                                     </Form.Group>
                                     <Form.Group className="mb-4">
-                                        <Form.Label htmlFor="description">Long description</Form.Label>
+                                        <Form.Label htmlFor="description">Description</Form.Label>
                                         <Form.Control
                                             id="description"
                                             as="textarea"
                                             rows={5}
                                             value={description}
                                             onChange={(e) => setDescription(e.target.value)}
-                                            placeholder="Example: I'm trying to buy BTC with my credit card but I'm getting an error message saying that my card is not CreateTicketed. I've tried with 2 different cards and I'm getting the same error. Can you please help me?"
+                                            placeholder="Example: I'm trying to buy BTC with my credit card but I'm getting an error message."
                                             className="dark:bg-muted-900/75 dark:text-muted-200"
                                         />
                                     </Form.Group>
