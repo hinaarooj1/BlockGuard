@@ -146,7 +146,7 @@ const Support = () => {
                         <div className="card-body">
                             <div className="table-responsive">
                                 {isLoading ? (
-                                    <table style={{ textAlign: "center" }} className="table tbleas tickettable display mb-4 no-footer" id="example6">
+                                    <table style={{ textAlign: "center" }} className="table tbleas tbls100 tickettable display mb-4 no-footer" id="example6">
                                         <tbody>
                                             <tr>
                                                 <td style={{ textAlign: "center" }} colSpan="5">

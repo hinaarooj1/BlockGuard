@@ -1112,6 +1112,14 @@ body {
 
 }
 
+@media (max-width:700px) {
+  .tbleas.tbls100 {
+
+    width: 100% !important;
+  }
+
+}
+
 @media (max-width:500px) {
 
   .maxp,
@@ -1119,8 +1127,8 @@ body {
     max-width: 250px !important;
   }
 
-  .tbb,
-  .tbleas {
+  .tbleas,
+  .tbb {
     width: max-content !important;
   }
 }
