@@ -9,9 +9,9 @@ import { SVGICON } from '../../constant/theme';
 
 const MainSlider = () => {
     const [swiperData, setSwiperData] = useState([
-        { color: 'bg-dark', amount: '0', chartcolor: 'rgba(148, 150, 176, 1)', svgicon: SVGICON.SwiperEthSvg },
-        { color: 'bg-warning', amount: '0', chartcolor: 'rgba(247, 215, 168, 1)', svgicon: SVGICON.SwiperBitSvg },
-        { color: 'bg-warning', amount: '0', chartcolor: 'rgba(247, 215, 168, 1)', svgicon: SVGICON.XrpUsdIcon },
+        { color: 'card-primary', amount: '0', chartcolor: 'rgba(148, 150, 176, 1)', svgicon: SVGICON.SwiperEthSvg },
+        { color: 'card-primary', amount: '0', chartcolor: 'rgba(247, 215, 168, 1)', svgicon: SVGICON.SwiperBitSvg },
+        { color: 'card-primary', amount: '0', chartcolor: 'rgba(247, 215, 168, 1)', svgicon: SVGICON.XrpUsdIcon },
     ]);
 
     useEffect(() => {
@@ -27,10 +27,10 @@ const MainSlider = () => {
                 const { bitcoin, ethereum, binancecoin, solana } = response.data;
 
                 setSwiperData([
-                    { color: 'bg-warning', amount: bitcoin.usd, chartcolor: 'rgba(247, 215, 168, 1)', svgicon: SVGICON.SwiperBitSvg },
-                    { color: 'bg-dark', amount: ethereum.usd, chartcolor: 'rgba(148, 150, 176, 1)', svgicon: SVGICON.SwiperEthSvg },
-                    { color: 'bg-warning', amount: binancecoin.usd, chartcolor: 'rgba(247, 215, 168, 1)', svgicon: <img style={{ width: "60px" }} src={bNBImg} /> },
-                    { color: 'bg-warning', amount: solana.usd, chartcolor: 'rgba(247, 215, 168, 1)', svgicon: <img style={{width:"60px"}} src={SolanaImg}/> },
+                    { color: 'card-primary', amount: bitcoin.usd, chartcolor: 'rgba(247, 215, 168, 1)', svgicon: SVGICON.SwiperBitSvg },
+                    { color: 'card-primary', amount: ethereum.usd, chartcolor: 'rgba(148, 150, 176, 1)', svgicon: SVGICON.SwiperEthSvg },
+                    { color: 'card-primary', amount: binancecoin.usd, chartcolor: 'rgba(247, 215, 168, 1)', svgicon: <img style={{ width: "60px" }} src={bNBImg} /> },
+                    { color: 'card-primary', amount: solana.usd, chartcolor: 'rgba(247, 215, 168, 1)', svgicon: <img style={{ width: "60px" }} src={SolanaImg} /> },
                 ]);
             } catch (error) {
                 console.error('Error fetching crypto prices:', error);
@@ -55,7 +55,7 @@ const MainSlider = () => {
                 spaceBetween={40}
                 parallax={true}
                 loop={false}
-                
+
                 autoplay={{
                     delay: 5000,
                 }}
@@ -84,7 +84,7 @@ const MainSlider = () => {
             >
                 {swiperData.map((item, i) => (
                     <SwiperSlide key={i}>
-                        <div className={`card card-box bg-secondary ${item.color}`}>
+                        <div className={`card card-box bg- ${item.color}`}>
                             <div className="card-header border-0 pb-0">
                                 <div className="chart-num">
                                     {/* <p>
