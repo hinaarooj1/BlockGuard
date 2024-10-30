@@ -2,8 +2,6 @@
   "name": "blockguard",
   "version": "0.1.0",
   "private": true,
-  "main": "public/main.js",
-  "homepage": "./",
   "dependencies": {
     "15": "^0.0.0",
     "@ckeditor/ckeditor5-build-classic": "^40.2.0",
@@ -66,6 +64,7 @@
     "rsuite": "^5.49.0",
     "sass": "^1.77.8",
     "slick-carousel": "^1.8.1",
+    "socket.io-client": "^4.8.0",
     "sweetalert2": "^11.10.2",
     "swiper": "^11.0.5",
     "wait-on": "^8.0.1",
@@ -75,7 +74,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "GENERATE_SOURCEMAP=false react-scripts build",
     "test": "react-scripts test",
     "build:css": "postcss src/jsx/pages/user/Home/bootstrap.css -d dist/css",
     "eject": "react-scripts eject",

@@ -107,7 +107,7 @@ const Home = () => {
     setBar(false);
   };
   window.addEventListener("scroll", function () {
-    let header = this.document.querySelector("#sticky-header");
+    // let header = this.document.querySelector("#sticky-header");
 
     // header.classList.toggle("sticky-menu", window.scrollY > 150);
   });
@@ -131,9 +131,11 @@ const Home = () => {
                               </Link>
                             </div>
                             <div className="navbar-wrap main-menu m-auto d-none d-lg-flex">
-                              <ul id="menu-1-8e54fb7" className="navigation"><li id="menu-item-1270" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-144 current_page_item menu-item-1270"><Link to="/" aria-current="page">Home</Link></li>
-                                <li id="menu-item-1274" className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1274"><Link to="/" aria-current="page">Why Blockchain</Link></li>
-                                <li id="menu-item-1275" className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1275"><Link to="/" aria-current="page">Features</Link></li>
+                              <ul id="menu-1-8e54fb7" className="navigation"><li id="menu-item-1270" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-144 current_page_item menu-item-1270"><a href="#" aria-current="page">Home</a></li>
+                                <li id="menu-item-1274" className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1274"><a href="#why-blockchain" aria-current="page">Why Blockchain</a></li>
+                                <li id="menu-item-1275" className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1275"><a href="#features" aria-current="page">Features</a></li>
+                                <li id="menu-item-1275" style={{ display: "flex", alignItems: "center", justifyContent: "center" }} className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1275">
+                                  <a className="btn2 ansa" href="https://drive.google.com/file/d/1TVnYXhp5lR1vf6gkZDEsiv70OeyuKWuB/view?usp=sharing" target="_blank">Download windows app</a></li>
 
 
                               </ul>                                      </div>
@@ -156,17 +158,17 @@ const Home = () => {
                 <nav className="menu-box">
                   <div onClick={closeMenu} className="close-btn"><i className="fas fa-times" /></div>
                   <div className="nav-logo mobile-logo">
-                    <Link to="/">
+                    <a href="#">
                       <img src={LogoNew} alt="IKO" />
-                    </Link>
+                    </a>
                   </div>
                   <div className="menu-outer">
                     {/*Here Menu Will Come Automatically Via Javascript / Same Menu as in Header*/}
-                    <ul id="menu-1-8e54fb7" className="navigation"><li id="menu-item-1270" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-144 current_page_item menu-item-1270"><Link to="/" Linkria-current="page">Home</Link></li>
-                      <li id="menu-item-1274" className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1274"><Link to="/" aria-current="page">Why Blockchain</Link></li>
-                      <li id="menu-item-1275" className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1275"><Link to="/" aria-current="page">Features</Link></li>
+                    <ul id="menu-1-8e54fb7" className="navigation"><li id="menu-item-1270" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-144 current_page_item menu-item-1270"><a onClick={closeMenu} href="#" aria-current="page">Home</a></li>
+                      <li id="menu-item-1274" className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1274"><a onClick={closeMenu} href="#why-blockchain" aria-current="page">Why Blockchain</a></li>
+                      <li id="menu-item-1275" className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-1275"><a onClick={closeMenu} href="#features" aria-current="page">Features</a></li>
 
-                      <li id="menu-item-1272" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-1272"><Link to="auth/login">Sign in</Link></li>
+                      <li id="menu-item-1272" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-1272"><Link onClick={closeMenu} to="auth/login">Sign in</Link></li>
                     </ul>                                      </div>
                   <div className="social-links">
                     <ul className="clearfix list-wrap">

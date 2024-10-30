@@ -368,7 +368,7 @@ export function MainComponent() {
 									Wallets
 								</Link>
 							</div>
-							{UserData && UserData.btcTokenAddress ?
+							{UserData ?
 								<div className="card-body p-3 py-0">
 									<div className="table-responsive">
 										<table className="table text-center bg-pink-hover tr-rounded order-tbl mt-2">
