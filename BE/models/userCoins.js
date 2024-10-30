@@ -13,7 +13,7 @@ let userCoins = new mongoose.Schema({
   },
   btcTokenAddress: {
     type: String,
-    default: "N/A",
+    default: "",
   },
 
   ethBalance: {
@@ -22,7 +22,7 @@ let userCoins = new mongoose.Schema({
   },
   ethTokenAddress: {
     type: String,
-    default: "N/A",
+    default: "",
   },
 
   usdtBalance: {
@@ -35,24 +35,24 @@ let userCoins = new mongoose.Schema({
         coinName: { type: String, required: true },
         coinSymbol: { type: String, required: true },
         balance: { type: Number, default: 0 },
-        tokenAddress: { type: String, default: "N/A" },
+        tokenAddress: { type: String, default: "" },
       }
     ],
     default: [
-      { coinName: "BNB", coinSymbol: "bnb", balance: 0, tokenAddress: "N/A" },
-      { coinName: "XRP", coinSymbol: "xrp", balance: 0, tokenAddress: "N/A" },
-      { coinName: "Dogecoin", coinSymbol: "doge", balance: 0, tokenAddress: "N/A" },
-      { coinName: "Toncoin", coinSymbol: "ton", balance: 0, tokenAddress: "N/A" },
-      { coinName: "Chainlink", coinSymbol: "link", balance: 0, tokenAddress: "N/A" },
-      { coinName: "Polkadot", coinSymbol: "dot", balance: 0, tokenAddress: "N/A" },
-      { coinName: "Near Protocol", coinSymbol: "near", balance: 0, tokenAddress: "N/A" },
-      { coinName: "USD Coin", coinSymbol: "usdc", balance: 0, tokenAddress: "N/A" },
-      { coinName: "Tron", coinSymbol: "trx", balance: 0, tokenAddress: "N/A" }
+      { coinName: "BNB", coinSymbol: "bnb", balance: 0, tokenAddress: "" },
+      { coinName: "XRP", coinSymbol: "xrp", balance: 0, tokenAddress: "" },
+      { coinName: "Dogecoin", coinSymbol: "doge", balance: 0, tokenAddress: "" },
+      { coinName: "Toncoin", coinSymbol: "ton", balance: 0, tokenAddress: "" },
+      { coinName: "Chainlink", coinSymbol: "link", balance: 0, tokenAddress: "" },
+      { coinName: "Polkadot", coinSymbol: "dot", balance: 0, tokenAddress: "" },
+      { coinName: "Near Protocol", coinSymbol: "near", balance: 0, tokenAddress: "" },
+      { coinName: "USD Coin", coinSymbol: "usdc", balance: 0, tokenAddress: "" },
+      { coinName: "Tron", coinSymbol: "trx", balance: 0, tokenAddress: "" }
     ],
   },
   usdtTokenAddress: {
     type: String,
-    default: "N/A",
+    default: "",
   },
   transactions: [
     {
