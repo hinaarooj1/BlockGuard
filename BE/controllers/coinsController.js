@@ -51,9 +51,7 @@ exports.getCoinsUser = catchAsyncErrors(async (req, res, next) => {
 exports.updateCoinAddress = catchAsyncErrors(async (req, res, next) => {
   let { id } = req.params;
   let { usdtTokenAddress, ethTokenAddress, btcTokenAddress } = req.body;
-  if (!usdtTokenAddress || !ethTokenAddress || !btcTokenAddress) {
-    return next(new errorHandler("Please fill all the required fields", 500));
-  }
+
   let getCoin = await userCoins.findOneAndUpdate(
     { user: id },
     {
