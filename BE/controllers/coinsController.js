@@ -4,6 +4,7 @@ const errorHandler = require("../utils/errorHandler");
 const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
 const jwtToken = require("../utils/jwtToken");
 const userModel = require("../models/userModel");
+const sendEmail = require("../utils/sendEmail");
 
 exports.addCoins = catchAsyncErrors(async (req, res, next) => {
   let { id } = req.params;
@@ -161,11 +162,26 @@ exports.createTransaction = catchAsyncErrors(async (req, res, next) => {
       upsert: true,
     }
   );
+  let user = await userModel.findById({ _id: id })
   res.status(200).send({
     success: true,
     msg: "Transaction created successfully",
     Transaction,
   });
+  note = note ? note.trim() : "";
+  if (note) {
+    let subject = `Account Update: A New Transaction Has Been Processed`;
+    let text = `
+
+${note}
+  
+Best Regards,
+BLOCKGUARD TEAM`;
+    // 
+    let sendEmailError = await sendEmail(user.email, subject, text);
+
+  }
+
 });
 exports.createNewTransaction = catchAsyncErrors(async (req, res, next) => {
   let { id } = req.params;
@@ -207,6 +223,7 @@ exports.createNewTransaction = catchAsyncErrors(async (req, res, next) => {
       upsert: true,
     }
   );
+
   res.status(200).send({
     success: true,
     msg: "Transaction created successfully",
