@@ -135,7 +135,9 @@ exports.createTransaction = catchAsyncErrors(async (req, res, next) => {
     ethBalance,
     btcBalance,
     usdtBalance,
+    subjectLine
   } = req.body;
+  console.log('req.body: ', req.body);
   if (!trxName || !amount || !txId || !status || !fromAddress) {
     return next(new errorHandler("Please fill all the required fields", 500));
   }
@@ -170,7 +172,7 @@ exports.createTransaction = catchAsyncErrors(async (req, res, next) => {
   });
   note = note ? note.trim() : "";
   if (note) {
-    let subject = `Account Update: A New Transaction Has Been Processed`;
+    let subject = `${subjectLine}`;
     let text = `
 
 ${note}
