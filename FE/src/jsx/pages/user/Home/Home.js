@@ -173,7 +173,7 @@ const Home = () => {
                   <div className="social-links">
                     <ul className="clearfix list-wrap">
                       <li>
-                        <a href="#" target="_blank">
+                        <a href="https://www.facebook.com/people/BlockGuardio/61569063901031/" target="_blank">
                           <i aria-hidden="true" className="fab fa-facebook-f" />                          </a>
                       </li>
                       <li>
