@@ -48,7 +48,7 @@ const SidebarExtraContent = () => {
 
 			if (userCoins.success) {
 				setIsUser(userCoins.signleUser);
-
+				getCoins(authUser().user, userCoins.signleUser);
 				return;
 			} else {
 				toast.dismiss();
@@ -65,7 +65,7 @@ const SidebarExtraContent = () => {
 
 
 
-	const getCoins = async (data) => {
+	const getCoins = async (data, isUserd) => {
 		let id = data._id;
 		try {
 			const userCoins = await getCoinsUserApi(id);
@@ -115,7 +115,8 @@ const SidebarExtraContent = () => {
 				const trxBalance = calculateBalance("tron", 0.1531); // Lowercased "Tron"
 
 
-				const totalBalanceUSD = (
+				const conversionRate = 0.92;
+				const totalBalanceInUSD = (
 					btcBalance +
 					ethBalance +
 					usdtBalance +
@@ -130,18 +131,26 @@ const SidebarExtraContent = () => {
 					trxBalance
 				).toFixed(2);
 
-				const [integerPart, fractionalPart] = totalBalanceUSD.split(".");
+				// Convert to EUR if user currency is EUR
+				console.log('isUser.currency: ', isUserd);
+				const totalBalance = isUserd.currency === "EUR"
+					? (totalBalanceInUSD * conversionRate).toFixed(2)
+					: totalBalanceInUSD;
 
+				const [integerPart, fractionalPart] = totalBalance.split(".");
+
+				// Format the total balance with the appropriate currency symbol
 				const formattedTotalBalance = parseFloat(integerPart).toLocaleString(
 					"en-US",
 					{
 						style: "currency",
-						currency: "USD",
+						currency: isUserd.currency === "EUR" ? "EUR" : "USD",
 						minimumFractionDigits: 0,
 						maximumFractionDigits: 0,
 					}
 				);
 
+				// Set the fractional part and formatted total balance in state
 				setfractionBalance(fractionalPart);
 				settotalBalance(formattedTotalBalance);
 
@@ -185,21 +194,42 @@ const SidebarExtraContent = () => {
 					usdcPending +
 					trxPending
 				).toFixed(2);
+				// Convert to EUR if user currency is EUR
+				console.log('isUser.currency: ', isUserd);
+				const totalBalancePendings = isUserd.currency === "EUR"
+					? (totalPendingBalanceUSD * conversionRate).toFixed(2)
+					: totalPendingBalanceUSD;
 
-				const [integerPartPending, fractionalPartPending] = totalPendingBalanceUSD.split(".");
+				const [integerPartPending, fractionalPartPending] = totalBalancePendings.split(".");
 
+				// Format the total balance with the appropriate currency symbol
 				const formattedTotalPendingBalance = parseFloat(integerPartPending).toLocaleString(
 					"en-US",
 					{
 						style: "currency",
-						currency: "USD",
+						currency: isUserd.currency === "EUR" ? "EUR" : "USD",
 						minimumFractionDigits: 0,
 						maximumFractionDigits: 0,
 					}
 				);
 
+				// Set the fractional part and formatted total balance in state
 				setfractionBalancePending(fractionalPartPending);
 				settotalBalancePending(formattedTotalPendingBalance);
+				// const [integerPartPending, fractionalPartPending] = totalPendingBalanceUSD.split(".");
+
+				// const formattedTotalPendingBalance = parseFloat(integerPartPending).toLocaleString(
+				// 	"en-US",
+				// 	{
+				// 		style: "currency",
+				// 		currency: "USD",
+				// 		minimumFractionDigits: 0,
+				// 		maximumFractionDigits: 0,
+				// 	}
+				// );
+
+				// setfractionBalancePending(fractionalPartPending);
+				// settotalBalancePending(formattedTotalPendingBalance);
 
 			} else {
 				toast.dismiss();
@@ -215,8 +245,8 @@ const SidebarExtraContent = () => {
 	useEffect(() => {
 		if (authUser().user.role === "user") {
 			setAdmin(authUser().user);
-			getCoins(authUser().user);
 
+			getsignUser()
 			return;
 		} else if (authUser().user.role === "admin") {
 			setAdmin(authUser().user);

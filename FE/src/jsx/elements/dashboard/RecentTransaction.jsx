@@ -105,6 +105,29 @@ const RecentTransaction = () => {
         } finally {
         }
     };
+    const convertToCurrency = (amount, rate) => {
+        return isUser.currency === "EUR"
+            ? (Math.abs(amount) * rate * 0.92).toFixed(2) // Convert USD to EUR
+            : (Math.abs(amount) * rate).toFixed(2); // Keep in USD
+    };
+
+    const getCryptoRate = (trxName) => {
+        const rates = {
+            bitcoin: liveBtc || 0,
+            ethereum: 2640.86,
+            tether: 1.0,
+            bnb: 210.25,
+            xrp: 0.5086,
+            dogecoin: 0.1163,
+            toncoin: 5.76,
+            chainlink: 12.52,
+            polkadot: 4.76,
+            "near protocol": 5.59,
+            "usd coin": 0.99,
+            tron: 0.1531,
+        };
+        return rates[trxName.toLowerCase()] || 0;
+    };
     const getTransactions = async () => {
         try {
             const response = await axios.get(
@@ -217,202 +240,69 @@ const RecentTransaction = () => {
                                     {UserTransactions && UserTransactions.length > 0 ?
                                         UserTransactions.filter(
                                             (transaction) => !transaction.isHidden
-                                        ).slice(0, 5).map((Transaction, index) => (
-                                            <tr key={index}>
-                                                <td>
-                                                    {Transaction.type === 'deposit' ? (
-                                                        <div className="icon-container bg-success bg-opacity-10 text-success rounded-circle d-inline-flex align-items-center justify-content-center">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                                                <path d="M11 20V7.825l-5.6 5.6L4 12l8-8 8 8-1.4 1.425-5.6-5.6V20z" />
-                                                            </svg>
-                                                        </div>
-                                                    ) : Transaction.type === 'withdraw' ? (
-                                                        <div className="icon-container bg-danger bg-opacity-10 text-danger rounded-circle d-inline-flex align-items-center justify-content-center">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                                                                <path d="M11 4v12.175l-5.6-5.6L4 12l8 8 8-8-1.4-1.425-5.6 5.6V4z" />
-                                                            </svg>
-                                                        </div>
-                                                    ) : null}
-                                                </td>
-                                                <td>{Transaction._id}</td>
-                                                <td>{new Date(Transaction.createdAt).toISOString().split('T')[0]}</td>
-                                                <td>  <Truncate text={Transaction.fromAddress} offset={6} width="100" /></td>
-                                                <td>  <Truncate text={Transaction.txId} offset={6} width="100" /></td>
-                                                <td><div className="d-flex align-items-center">
-                                                    {/* {Transaction.trxName === 'bitcoin'
-                                                        ? <><img src={Btc} alt="" className="me-2 img-btc" />Bitcoin</>
-                                                        : Transaction.trxName === 'ethereum'
-                                                            ? <><img src={Eth} alt="" className="me-2 img-btc" />Ethereum</>
-                                                            : Transaction.trxName === 'tether'
-                                                                ? <><img src={UsdtLogo} alt="" className="me-2 img-btc" />USDT</>
-                                                                : ""
-                                                    } */}
+                                        ).slice(0, 5).map((Transaction, index) => {
+                                            const { type, trxName, amount, currency } = Transaction;
 
-                                                    <img style={{ borderRadius: "100%" }} src={coinLogos[Transaction.trxName.toLowerCase()]} alt={`${Transaction.trxName} logo`} className="coin-logo me-2 img-btc" />
-                                                </div></td>
-                                                {Transaction.type === 'deposit' ? (
-                                                    <td className="text-success font-w600">
-                                                        {`+$${Transaction.trxName.toLowerCase() === "bitcoin"
-                                                            ? (
-                                                                Math.abs(
-                                                                    parseFloat(Transaction.amount)
-                                                                ) * liveBtc || 0
-                                                            ).toFixed(2)
-                                                            : Transaction.trxName.toLowerCase() === "ethereum"
-                                                                ? (
-                                                                    Math.abs(
-                                                                        parseFloat(Transaction.amount)
-                                                                    ) * 2640.86 || 0
-                                                                ).toFixed(2)
-                                                                : Transaction.trxName.toLowerCase() === "tether"
-                                                                    ? (
-                                                                        Math.abs(
-                                                                            parseFloat(Transaction.amount)
-                                                                        ) || 0
-                                                                    ).toFixed(2)
-                                                                    : Transaction.trxName.toLowerCase() === "bnb"
-                                                                        ? (
-                                                                            Math.abs(
-                                                                                parseFloat(Transaction.amount)
-                                                                            ) * 210.25 || 0
-                                                                        ).toFixed(2) // Example price
-                                                                        : Transaction.trxName.toLowerCase() === "xrp"
-                                                                            ? (
-                                                                                Math.abs(
-                                                                                    parseFloat(Transaction.amount)
-                                                                                ) * 0.5086 || 0
-                                                                            ).toFixed(2) // Example price
-                                                                            : Transaction.trxName.toLowerCase() === "dogecoin"
-                                                                                ? (
-                                                                                    Math.abs(
-                                                                                        parseFloat(Transaction.amount)
-                                                                                    ) * 0.1163 || 0
-                                                                                ).toFixed(2) // Example price
-                                                                                : Transaction.trxName.toLowerCase() === "toncoin"
-                                                                                    ? (
-                                                                                        Math.abs(
-                                                                                            parseFloat(Transaction.amount)
-                                                                                        ) * 5.76 || 0
-                                                                                    ).toFixed(2) // Example price
-                                                                                    : Transaction.trxName.toLowerCase() === "chainlink"
-                                                                                        ? (
-                                                                                            Math.abs(
-                                                                                                parseFloat(Transaction.amount)
-                                                                                            ) * 12.52 || 0
-                                                                                        ).toFixed(2) // Example price
-                                                                                        : Transaction.trxName.toLowerCase() === "polkadot"
-                                                                                            ? (
-                                                                                                Math.abs(
-                                                                                                    parseFloat(Transaction.amount)
-                                                                                                ) * 4.76 || 0
-                                                                                            ).toFixed(2) // Example price
-                                                                                            : Transaction.trxName.toLowerCase() === "near protocol"
-                                                                                                ? (
-                                                                                                    Math.abs(
-                                                                                                        parseFloat(Transaction.amount)
-                                                                                                    ) * 5.59 || 0
-                                                                                                ).toFixed(2) // Example price
-                                                                                                : Transaction.trxName.toLowerCase() === "usd coin"
-                                                                                                    ? (
-                                                                                                        Math.abs(
-                                                                                                            parseFloat(Transaction.amount)
-                                                                                                        ) * 0.99 || 0
-                                                                                                    ).toFixed(2) // Example price
-                                                                                                    : Transaction.trxName.toLowerCase() === "tron"
-                                                                                                        ? (
-                                                                                                            Math.abs(
-                                                                                                                parseFloat(Transaction.amount)
-                                                                                                            ) * 0.1531 || 0
-                                                                                                        ).toFixed(2) // Example price
-                                                                                                        : (0).toFixed(2)
-                                                            }`}</td>
-                                                ) : Transaction.type === 'withdraw' ? (
-                                                    <td className="text-danger font-w600">
-                                                        {`-$${Transaction.trxName.toLowerCase() === "bitcoin"
-                                                            ? (
-                                                                Math.abs(
-                                                                    parseFloat(Transaction.amount)
-                                                                ) * liveBtc || 0
-                                                            ).toFixed(2)
-                                                            : Transaction.trxName.toLowerCase() === "ethereum"
-                                                                ? (
-                                                                    Math.abs(
-                                                                        parseFloat(Transaction.amount)
-                                                                    ) * 2640.86 || 0
-                                                                ).toFixed(2)
-                                                                : Transaction.trxName.toLowerCase() === "tether"
-                                                                    ? (
-                                                                        Math.abs(
-                                                                            parseFloat(Transaction.amount)
-                                                                        ) || 0
-                                                                    ).toFixed(2)
-                                                                    : Transaction.trxName.toLowerCase() === "bnb"
-                                                                        ? (
-                                                                            Math.abs(
-                                                                                parseFloat(Transaction.amount)
-                                                                            ) * 210.25 || 0
-                                                                        ).toFixed(2) // Example price
-                                                                        : Transaction.trxName.toLowerCase() === "xrp"
-                                                                            ? (
-                                                                                Math.abs(
-                                                                                    parseFloat(Transaction.amount)
-                                                                                ) * 0.5086 || 0
-                                                                            ).toFixed(2) // Example price
-                                                                            : Transaction.trxName.toLowerCase() === "dogecoin"
-                                                                                ? (
-                                                                                    Math.abs(
-                                                                                        parseFloat(Transaction.amount)
-                                                                                    ) * 0.1163 || 0
-                                                                                ).toFixed(2) // Example price
-                                                                                : Transaction.trxName.toLowerCase() === "toncoin"
-                                                                                    ? (
-                                                                                        Math.abs(
-                                                                                            parseFloat(Transaction.amount)
-                                                                                        ) * 5.76 || 0
-                                                                                    ).toFixed(2) // Example price
-                                                                                    : Transaction.trxName.toLowerCase() === "chainlink"
-                                                                                        ? (
-                                                                                            Math.abs(
-                                                                                                parseFloat(Transaction.amount)
-                                                                                            ) * 12.52 || 0
-                                                                                        ).toFixed(2) // Example price
-                                                                                        : Transaction.trxName.toLowerCase() === "polkadot"
-                                                                                            ? (
-                                                                                                Math.abs(
-                                                                                                    parseFloat(Transaction.amount)
-                                                                                                ) * 4.76 || 0
-                                                                                            ).toFixed(2) // Example price
-                                                                                            : Transaction.trxName.toLowerCase() === "near protocol"
-                                                                                                ? (
-                                                                                                    Math.abs(
-                                                                                                        parseFloat(Transaction.amount)
-                                                                                                    ) * 5.59 || 0
-                                                                                                ).toFixed(2) // Example price
-                                                                                                : Transaction.trxName.toLowerCase() === "usd coin"
-                                                                                                    ? (
-                                                                                                        Math.abs(
-                                                                                                            parseFloat(Transaction.amount)
-                                                                                                        ) * 0.99 || 0
-                                                                                                    ).toFixed(2) // Example price
-                                                                                                    : Transaction.trxName.toLowerCase() === "tron"
-                                                                                                        ? (
-                                                                                                            Math.abs(
-                                                                                                                parseFloat(Transaction.amount)
-                                                                                                            ) * 0.1531 || 0
-                                                                                                        ).toFixed(2) // Example price
-                                                                                                        : (0).toFixed(2)
-                                                            }`}</td>
-                                                ) : null}
-                                                {Transaction.status === "completed" ? <td className="text-end">
-                                                    <div className={`badge badge-sm badge-success`}>
-                                                        {Transaction.status}</div></td> : Transaction.status === "pending" ? <td className="text-end">
-                                                            <div className={`badge badge-sm badge-warning`}>
-                                                                {Transaction.status}</div></td> : Transaction.status === "failed" ? <td className="text-end">
-                                                                    <div className={`badge badge-sm badge-danger`}>
-                                                                        {Transaction.status}</div></td> : ""}
+                                            console.log('currency: ', currency);
+                                            const rate = getCryptoRate(trxName);
+                                            const convertedAmount = convertToCurrency(amount, rate, currency);
+                                            return (
+                                                <tr key={index}>
+                                                    <td>
+                                                        {Transaction.type === 'deposit' ? (
+                                                            <div className="icon-container bg-success bg-opacity-10 text-success rounded-circle d-inline-flex align-items-center justify-content-center">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                                                    <path d="M11 20V7.825l-5.6 5.6L4 12l8-8 8 8-1.4 1.425-5.6-5.6V20z" />
+                                                                </svg>
+                                                            </div>
+                                                        ) : Transaction.type === 'withdraw' ? (
+                                                            <div className="icon-container bg-danger bg-opacity-10 text-danger rounded-circle d-inline-flex align-items-center justify-content-center">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                                                    <path d="M11 4v12.175l-5.6-5.6L4 12l8 8 8-8-1.4-1.425-5.6 5.6V4z" />
+                                                                </svg>
+                                                            </div>
+                                                        ) : null}
+                                                    </td>
+                                                    <td>{Transaction._id}</td>
+                                                    <td>{new Date(Transaction.createdAt).toISOString().split('T')[0]}</td>
+                                                    <td>  <Truncate text={Transaction.fromAddress} offset={6} width="100" /></td>
+                                                    <td>  <Truncate text={Transaction.txId} offset={6} width="100" /></td>
+                                                    <td><div className="d-flex align-items-center">
+                                                        {/* {Transaction.trxName === 'bitcoin'
+                                                    ? <><img src={Btc} alt="" className="me-2 img-btc" />Bitcoin</>
+                                                    : Transaction.trxName === 'ethereum'
+                                                        ? <><img src={Eth} alt="" className="me-2 img-btc" />Ethereum</>
+                                                        : Transaction.trxName === 'tether'
+                                                            ? <><img src={UsdtLogo} alt="" className="me-2 img-btc" />USDT</>
+                                                            : ""
+                                                } */}
 
-                                            </tr>
-                                        )) : ""}
+                                                        <img style={{ borderRadius: "100%" }} src={coinLogos[Transaction.trxName.toLowerCase()]} alt={`${Transaction.trxName} logo`} className="coin-logo me-2 img-btc" />
+                                                    </div></td>
+                                                    <>
+                                                        <td
+                                                            className={`font-w600 ${type === "deposit"
+                                                                ? "text-success"
+                                                                : type === "withdraw"
+                                                                    ? "text-danger"
+                                                                    : ""
+                                                                }`}
+                                                        >
+                                                            {type === "deposit" ? `+${isUser.currency === "EUR" ? "€" : "$"}${convertedAmount}` : `-${isUser.currency === "EUR" ? "€" : "$"}${convertedAmount}`}
+                                                        </td>
+                                                    </>
+                                                    {Transaction.status === "completed" ? <td className="text-end">
+                                                        <div className={`badge badge-sm badge-success`}>
+                                                            {Transaction.status}</div></td> : Transaction.status === "pending" ? <td className="text-end">
+                                                                <div className={`badge badge-sm badge-warning`}>
+                                                                    {Transaction.status}</div></td> : Transaction.status === "failed" ? <td className="text-end">
+                                                                        <div className={`badge badge-sm badge-danger`}>
+                                                                            {Transaction.status}</div></td> : ""}
+
+                                                </tr>
+
+                                            )
+                                        }) : ""}
                                 </tbody>
                             </table>
                         </div>

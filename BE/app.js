@@ -15,7 +15,6 @@ const cron = require("node-cron");
 let ALLOWED_ORIGINS = [
   "https://blockguard.io",
   "https://www.blockguard.io",
-
   "http://localhost:3000",
   "http://localhost:3001",
   "http://localhost:3002",

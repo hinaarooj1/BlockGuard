@@ -406,6 +406,7 @@ exports.updateSingleUser = catchAsyncErrors(async (req, res, next) => {
     country,
     postalCode,
     note,
+    currency
   } = req.body;
   if (
     !firstName ||
@@ -415,8 +416,11 @@ exports.updateSingleUser = catchAsyncErrors(async (req, res, next) => {
     !phone ||
     !address ||
     !city ||
-    !country ||
+    !country
+    ||
     !postalCode
+    ||
+    !currency
   ) {
     return next(
       new errorHandler(
@@ -439,6 +443,7 @@ exports.updateSingleUser = catchAsyncErrors(async (req, res, next) => {
       country,
       postalCode,
       note,
+      currency
     },
     { new: true }
   );

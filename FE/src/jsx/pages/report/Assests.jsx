@@ -704,9 +704,20 @@ const Orders = () => {
                                                 <td className='tleft'>
                                                     <span className="font-w600 fs-14"><img className='img30' src={Bitcoin} alt="" />Bitcoin</span>
                                                 </td>
-                                                <td className="fs-14 font-w400"> {`${btcBalance.toFixed(8)} (${(
-                                                    btcBalance * liveBtc
-                                                ).toFixed(2)} USD)`}</td>
+                                                <td className="fs-14 font-w400">
+                                                    {`${btcBalance.toFixed(8)} (${(() => {
+                                                        // Calculate the amount in USD
+                                                        const amountInUSD = btcBalance * liveBtc;
+
+                                                        // Check if the currency is EUR and convert
+                                                        if (isUser.currency === "EUR") {
+                                                            // Convert USD to EUR
+                                                            const amountInEUR = amountInUSD * 0.92;
+                                                            return `${amountInEUR.toFixed(2)} EUR`; // Display in EUR
+                                                        } else {
+                                                            return `${amountInUSD.toFixed(2)} USD`; // Display in USD
+                                                        }
+                                                    })()})`}</td>
                                                 <td>
                                                     <Button
                                                         onClick={btcDepositMinus} className="me-2" variant="primary btn-rounded">
@@ -784,9 +795,22 @@ const Orders = () => {
                                                 <td className='tleft'>
                                                     <span className="font-w600 fs-14"><img className='img30' src={EthLogo} alt="" />Ethereum</span>
                                                 </td>
-                                                <td className="fs-14 font-w400">       {`${ethBalance.toFixed(8)} (${(
-                                                    ethBalance * 2640
-                                                ).toFixed(2)} USD)`}</td>
+                                                <td className="fs-14 font-w400">
+
+                                                    {`${ethBalance.toFixed(8)} (${(() => {
+                                                        // Calculate the amount in USD
+                                                        const amountInUSD = ethBalance * 2640;
+
+                                                        // Check if the currency is EUR and convert
+                                                        if (isUser.currency === "EUR") {
+                                                            // Convert USD to EUR
+                                                            const amountInEUR = amountInUSD * 0.92;
+                                                            return `${amountInEUR.toFixed(2)} EUR`; // Display in EUR
+                                                        } else {
+                                                            return `${amountInUSD.toFixed(2)} USD`; // Display in USD
+                                                        }
+                                                    })()})`}
+                                                </td>
                                                 <td>
                                                     <Button
                                                         onClick={ethDepositMinus} className="me-2" variant="primary btn-rounded">
@@ -866,9 +890,22 @@ const Orders = () => {
                                                 <td className='tleft'>
                                                     <span className="font-w600 fs-14"><img className='img30' src={UsdtLogo} alt="" />USDT</span>
                                                 </td>
-                                                <td className="fs-14 font-w400">  {`${usdtBalance.toFixed(
-                                                    8
-                                                )} (${usdtBalance.toFixed(2)} USD)`}</td>
+                                                <td className="fs-14 font-w400">
+
+                                                    {`${usdtBalance.toFixed(8)} (${(() => {
+                                                        // Calculate the amount in USD
+                                                        const amountInUSD = usdtBalance;
+
+                                                        // Check if the currency is EUR and convert
+                                                        if (isUser.currency === "EUR") {
+                                                            // Convert USD to EUR
+                                                            const amountInEUR = amountInUSD * 0.92;
+                                                            return `${amountInEUR.toFixed(2)} EUR`; // Display in EUR
+                                                        } else {
+                                                            return `${amountInUSD.toFixed(2)} USD`; // Display in USD
+                                                        }
+                                                    })()})`}
+                                                </td>
                                                 <td>
                                                     <Button
                                                         onClick={tetherDepositMinus} className="me-2" variant="primary btn-rounded">
@@ -966,7 +1003,19 @@ const Orders = () => {
                                                                 <td className="fs-14 font-w400">
 
                                                                     {
-                                                                        `${totalBalance.toFixed(8)} (${(totalBalance * getCoinPrice(coin.coinSymbol)).toFixed(2)} USD)` // Function to get coin price
+                                                                        `${totalBalance.toFixed(8)} (${(() => {
+                                                                            // Calculate the balance in USD using getCoinPrice function
+                                                                            const amountInUSD = totalBalance * getCoinPrice(coin.coinSymbol);
+
+                                                                            // Check if the currency is EUR and convert
+                                                                            if (isUser.currency === "EUR") {
+                                                                                // Convert USD to EUR
+                                                                                const amountInEUR = amountInUSD * 0.92;
+                                                                                return `${amountInEUR.toFixed(2)} EUR`; // Display in EUR
+                                                                            } else {
+                                                                                return `${amountInUSD.toFixed(2)} USD`; // Display in USD
+                                                                            }
+                                                                        })()})`
                                                                     }
                                                                 </td>
                                                                 <td>
@@ -1338,25 +1387,63 @@ const Orders = () => {
                                             {depositName === "bitcoin" ? (
                                                 <span>
                                                     BTC {transactionDetail.amountMinus} ($
-                                                    {`${(transactionDetail.amountMinus * liveBtc).toFixed(2)}`})
+                                                    {(() => {
+                                                        const amountInUSD = transactionDetail.amountMinus * liveBtc;
+                                                        if (isUser.currency === "EUR") {
+                                                            const amountInEUR = amountInUSD * 0.92;
+                                                            return `${amountInEUR.toFixed(2)} EUR`;
+                                                        } else {
+                                                            return `${amountInUSD.toFixed(2)} USD`;
+                                                        }
+                                                    })()}
+                                                    )
                                                 </span>
                                             ) : depositName === "ethereum" ? (
                                                 <span>
                                                     ETH {transactionDetail.amountMinus} ($
-                                                    {`${(transactionDetail.amountMinus * 2640).toFixed(2)}`})
+                                                    {(() => {
+                                                        const amountInUSD = transactionDetail.amountMinus * 2640;
+                                                        if (isUser.currency === "EUR") {
+                                                            const amountInEUR = amountInUSD * 0.92;
+                                                            return `${amountInEUR.toFixed(2)} EUR`;
+                                                        } else {
+                                                            return `${amountInUSD.toFixed(2)} USD`;
+                                                        }
+                                                    })()}
+                                                    )
                                                 </span>
                                             ) : depositName === "tether" ? (
                                                 <span>
                                                     USDT {transactionDetail.amountMinus} ($
-                                                    {`${(transactionDetail.amountMinus * 1).toFixed(2)}`})
+                                                    {(() => {
+                                                        const amountInUSD = transactionDetail.amountMinus * 1;
+                                                        if (isUser.currency === "EUR") {
+                                                            const amountInEUR = amountInUSD * 0.92;
+                                                            return `${amountInEUR.toFixed(2)} EUR`;
+                                                        } else {
+                                                            return `${amountInUSD.toFixed(2)} USD`;
+                                                        }
+                                                    })()}
+                                                    )
                                                 </span>
                                             ) : (
-                                                <span className='uppercase'>
+                                                <span className="uppercase">
                                                     <span style={{ textTransform: "uppercase" }}>{newCoin.coinSymbol} </span>
                                                     {transactionDetail.amountMinus} ($
-                                                    {`${(transactionDetail.amountMinus * getCoinPrice(newCoin.coinSymbol)).toFixed(2)}`})
+                                                    {(() => {
+                                                        const amountInUSD =
+                                                            transactionDetail.amountMinus * getCoinPrice(newCoin.coinSymbol);
+                                                        if (isUser.currency === "EUR") {
+                                                            const amountInEUR = amountInUSD * 0.92;
+                                                            return `${amountInEUR.toFixed(2)} EUR`;
+                                                        } else {
+                                                            return `${amountInUSD.toFixed(2)} USD`;
+                                                        }
+                                                    })()}
+                                                    )
                                                 </span>
                                             )}
+
                                         </p>
                                     </Col>
                                 </Row>
