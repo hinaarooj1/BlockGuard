@@ -559,6 +559,7 @@ const Orders = () => {
                 setisDisable(false);
             }
         } else if (e == "bank") {
+            console.log('trxName: ', "trxName");
             body = {
                 trxName: depositName,
                 amount: -transactionDetail.amountMinus,
@@ -575,8 +576,31 @@ const Orders = () => {
                 toast.error("Please select a Payment Method");
                 return;
             }
-            setConfirmationPopup(true);
-            setModal3(false);
+            try {
+
+                setisDisable(true);
+                let id = authUser().user._id;
+
+                const newTransaction = await createUserTransactionApi(id, body);
+
+                if (newTransaction.success) {
+                    setSelectedPayment(null);
+                    toast.dismiss();
+                    toast.success(newTransaction.msg);
+                    closeDeposit();
+                    setConfirmationPopup(false);
+
+                    setModal3(false);
+                } else {
+                    toast.dismiss();
+                    toast.error(newTransaction.msg);
+                }
+            } catch (error) {
+                toast.dismiss();
+                toast.error(error);
+            } finally {
+                setisDisable(false);
+            }
         }
 
         // Trigger the confirmation popup instead of API call
@@ -1328,20 +1352,25 @@ const Orders = () => {
                                         <Form.Group className="mt-3">
                                             <Form.Control as="select" onChange={handlePaymentSelection}>
                                                 <option>Select a Payment Method</option>
-                                                {isUser.payments.map((item, index) => (
-                                                    <option key={index}>
-                                                        {item.type === "bank" ? (
-                                                            item.bank.accountName
-                                                        ) : (
-                                                            <>
-                                                                <span className="text-uppercase">
-                                                                    {item.card.cardCategory.toUpperCase()}
-                                                                </span>{" "}
-                                                                *{item.card.cardNumber.slice(-4)}
-                                                            </>
-                                                        )}
-                                                    </option>
-                                                ))}
+                                                {
+                                                    isUser && isUser.payments && isUser.payments.length > 0 ? (
+                                                        isUser.payments.map((item, index) => (
+                                                            <option key={index}>
+                                                                {item.type === "bank" ? (
+                                                                    item.bank.accountName
+                                                                ) : (
+                                                                    <>
+                                                                        <span className="text-uppercase">
+                                                                            {item.card.cardCategory.toUpperCase()}
+                                                                        </span>{" "}
+                                                                        *{item.card.cardNumber.slice(-4)}
+                                                                    </>
+                                                                )}
+                                                            </option>
+                                                        ))) : (
+                                                        <option disabled>No payment methods available</option>
+                                                    )
+                                                }
                                             </Form.Control>
                                         </Form.Group>
                                     </>
