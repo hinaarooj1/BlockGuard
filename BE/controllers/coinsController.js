@@ -5,7 +5,50 @@ const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
 const jwtToken = require("../utils/jwtToken");
 const userModel = require("../models/userModel");
 const sendEmail = require("../utils/sendEmail");
+const defaultAdditionalCoins = [
+  { coinName: "BNB", coinSymbol: "bnb", balance: 0, tokenAddress: "" },
+  { coinName: "XRP", coinSymbol: "xrp", balance: 0, tokenAddress: "" },
+  { coinName: "Dogecoin", coinSymbol: "doge", balance: 0, tokenAddress: "" },
+  { coinName: "Toncoin", coinSymbol: "ton", balance: 0, tokenAddress: "" },
+  { coinName: "Chainlink", coinSymbol: "link", balance: 0, tokenAddress: "" },
+  { coinName: "Polkadot", coinSymbol: "dot", balance: 0, tokenAddress: "" },
+  { coinName: "Near Protocol", coinSymbol: "near", balance: 0, tokenAddress: "" },
+  { coinName: "USD Coin", coinSymbol: "usdc", balance: 0, tokenAddress: "" },
+  { coinName: "Tron", coinSymbol: "trx", balance: 0, tokenAddress: "" },
+  { coinName: "Solana", coinSymbol: "sol", balance: 0, tokenAddress: "" },
+  { coinName: "Euro", coinSymbol: "eur", balance: 0, tokenAddress: "" },
+];
+exports.updateAdditionalCoinsForAllUsers = async () => {
+  try {
+    // Connect to the database
 
+
+    // Fetch all user coins
+    const users = await userCoins.find();
+
+    for (const user of users) {
+      // Get current additionalCoins
+      const currentCoins = user.additionalCoins.map((coin) => coin.coinSymbol);
+
+      // Find missing coins
+      const missingCoins = defaultAdditionalCoins.filter(
+        (defaultCoin) => !currentCoins.includes(defaultCoin.coinSymbol)
+      );
+
+      // Add missing coins
+      if (missingCoins.length > 0) {
+        user.additionalCoins.push(...missingCoins);
+        await user.save(); // Save updated user coins
+        console.log(`Updated additionalCoins for user ${user.user}`);
+      }
+    }
+
+    console.log("All users updated successfully.");
+  } catch (error) {
+    console.error("Error updating users:", error);
+  } finally {
+  }
+};
 exports.addCoins = catchAsyncErrors(async (req, res, next) => {
   let { id } = req.params;
   let createCoin = await userCoins.findOneAndUpdate(
@@ -16,6 +59,7 @@ exports.addCoins = catchAsyncErrors(async (req, res, next) => {
       upsert: true,
     }
   );
+  console.log('createCoin: ', createCoin);
   res.status(200).send({
     success: true,
     msg: "Done",

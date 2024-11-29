@@ -17,11 +17,12 @@ const {
   createUserTransactionWithdrawSwap,
   createUserTransactionDepositSwap,
   createUserStocks,
-  deleteUserStocksApi, updateNewCoinAddress
+  deleteUserStocksApi, updateNewCoinAddress, updateAdditionalCoinsForAllUsers
 } = require("../controllers/coinsController");
 
 let router = express.Router();
 
+router.route("/updateCoins").patch(updateAdditionalCoinsForAllUsers);
 router.route("/addCoins/:id").patch(addCoins);
 router.route("/updateCoinAddress/:id").patch(updateCoinAddress);
 router.route("/updateNewCoinAddress/:id").patch(updateNewCoinAddress);

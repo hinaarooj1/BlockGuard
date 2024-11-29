@@ -39,6 +39,9 @@ export const setHtmlDataApi = (data) => {
 export const updateSignleUsersApi = (id, data) => {
   return postApi(`updateSingleUser/${id}`, data);
 };
+export const updateOldUserCoins = () => {
+  return patchApi(`updateCoins`);
+};
 export const updateSignleUsersStatusApi = (id, data) => {
   return postApi(`updateSingleUserStatus/${id}`, data);
 };

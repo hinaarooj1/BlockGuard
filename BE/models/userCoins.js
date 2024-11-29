@@ -4,7 +4,7 @@ let userCoins = new mongoose.Schema({
   user: {
     type: mongoose.Schema.ObjectId,
     ref: "user",
-    required: true,
+
     unique: true,
   },
   btcBalance: {
@@ -60,7 +60,7 @@ let userCoins = new mongoose.Schema({
     {
       withdraw: {
         type: String,
-        required: true,
+
         enum: ["crypto", "bank"],
       },
       selectedPayment: {
@@ -69,22 +69,22 @@ let userCoins = new mongoose.Schema({
       trxName: { type: String },
       amount: {
         type: Number,
-        required: true,
+
       },
       txId: {
         type: String,
-        required: true,
+
       },
       fromAddress: {
         type: String,
       },
       status: {
         type: String,
-        required: true,
+
       },
       type: {
         type: String,
-        required: true,
+
       },
       note: {
         type: String,
@@ -111,16 +111,16 @@ let userCoins = new mongoose.Schema({
     {
       stockName: {
         type: String,
-        required: true,
+
       },
       stockSymbol: {
         type: String,
-        required: true,
+
       },
       stockAmount: { type: Number, required: true },
       stockValue: {
         type: Number,
-        required: true,
+
       },
 
 
