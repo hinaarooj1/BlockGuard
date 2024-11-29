@@ -454,9 +454,9 @@ const UserTransactions = () => {
                                             case "dogecoin":
                                               return (transaction.amount * 0.1163).toFixed(2); // Example price
                                             case "solana":
-                                              return (sinlgeUserTx.amount * 245.01).toFixed(2); // Example price
+                                              return (transaction.amount * 245.01).toFixed(2); // Example price
                                             case "euro":
-                                              return (sinlgeUserTx.amount * 1.08).toFixed(2);
+                                              return (transaction.amount * 1.08).toFixed(2);
                                             case "toncoin":
                                               return (transaction.amount * 5.76).toFixed(2); // Example price
                                             case "chainlink":
