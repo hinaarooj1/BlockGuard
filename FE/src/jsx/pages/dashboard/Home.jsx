@@ -23,14 +23,18 @@ import Coin5 from '../../../assets/images/new/5.png';
 import Coin6 from '../../../assets/images/new/6.png';
 import Coin7 from '../../../assets/images/new/7.png';
 import Coin8 from '../../../assets/images/new/8.png';
+import eurIco from '../../../assets/images/new/euro.svg';
+import solIco from '../../../assets/images/new/solana.png';
 import { useAuthUser, useSignOut } from 'react-auth-kit';
 import { toast } from 'react-toastify';
 import { getCoinsUserApi, getsignUserApi } from '../../../Api/Service';
 import axios from 'axios';
 
 const coinLogos = {
+	euro: eurIco, // Replace with actual local path
 	bnb: BNBcoin, // Replace with actual local path
 	xrp: Coin1, // Replace with actual local path
+	solana: solIco, // Replace with actual local path
 	dogecoin: Coin2, // Replace with actual local path
 	toncoin: Coin3, // Replace with actual local path
 	chainlink: Coin4, // Replace with actual local path

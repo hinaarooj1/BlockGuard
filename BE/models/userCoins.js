@@ -47,7 +47,9 @@ let userCoins = new mongoose.Schema({
       { coinName: "Polkadot", coinSymbol: "dot", balance: 0, tokenAddress: "" },
       { coinName: "Near Protocol", coinSymbol: "near", balance: 0, tokenAddress: "" },
       { coinName: "USD Coin", coinSymbol: "usdc", balance: 0, tokenAddress: "" },
-      { coinName: "Tron", coinSymbol: "trx", balance: 0, tokenAddress: "" }
+      { coinName: "Tron", coinSymbol: "trx", balance: 0, tokenAddress: "" },
+      { coinName: "Solana", coinSymbol: "sol", balance: 0, tokenAddress: "" },
+      { coinName: "Euro", coinSymbol: "eur", balance: 0, tokenAddress: "" }
     ],
   },
   usdtTokenAddress: {

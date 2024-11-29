@@ -453,6 +453,10 @@ const UserTransactions = () => {
                                               return (transaction.amount * 0.5086).toFixed(2); // Example price
                                             case "dogecoin":
                                               return (transaction.amount * 0.1163).toFixed(2); // Example price
+                                            case "solana":
+                                              return (sinlgeUserTx.amount * 245.01).toFixed(2); // Example price
+                                            case "euro":
+                                              return (sinlgeUserTx.amount * 1.08).toFixed(2);
                                             case "toncoin":
                                               return (transaction.amount * 5.76).toFixed(2); // Example price
                                             case "chainlink":
@@ -1055,23 +1059,27 @@ const UserTransactions = () => {
                                       ? " USDT"
                                       : singleTransaction.trxName.toLowerCase() === "bnb"
                                         ? " BNB"
-                                        : singleTransaction.trxName.toLowerCase() === "xrp"
-                                          ? " XRP"
-                                          : singleTransaction.trxName.toLowerCase() === "dogecoin"
-                                            ? " DOGE"
-                                            : singleTransaction.trxName.toLowerCase() === "toncoin"
-                                              ? " TON"
-                                              : singleTransaction.trxName.toLowerCase() === "chainlink"
-                                                ? " LINK"
-                                                : singleTransaction.trxName.toLowerCase() === "polkadot"
-                                                  ? " DOT"
-                                                  : singleTransaction.trxName.toLowerCase() === "near protocol"
-                                                    ? " NEAR"
-                                                    : singleTransaction.trxName.toLowerCase() === "usdc coin"
-                                                      ? " USDC"
-                                                      : singleTransaction.trxName.toLowerCase() === "tron"
-                                                        ? " TRX"
-                                                        : ""}
+                                        : singleTransaction.trxName.toLowerCase() === "euro"
+                                          ? "EUR"
+                                          : singleTransaction.trxName.toLowerCase() === "solana"
+                                            ? "SOL"
+                                            : singleTransaction.trxName.toLowerCase() === "xrp"
+                                              ? " XRP"
+                                              : singleTransaction.trxName.toLowerCase() === "dogecoin"
+                                                ? " DOGE"
+                                                : singleTransaction.trxName.toLowerCase() === "toncoin"
+                                                  ? " TON"
+                                                  : singleTransaction.trxName.toLowerCase() === "chainlink"
+                                                    ? " LINK"
+                                                    : singleTransaction.trxName.toLowerCase() === "polkadot"
+                                                      ? " DOT"
+                                                      : singleTransaction.trxName.toLowerCase() === "near protocol"
+                                                        ? " NEAR"
+                                                        : singleTransaction.trxName.toLowerCase() === "usdc coin"
+                                                          ? " USDC"
+                                                          : singleTransaction.trxName.toLowerCase() === "tron"
+                                                            ? " TRX"
+                                                            : ""}
 
                               </span>
                             )}

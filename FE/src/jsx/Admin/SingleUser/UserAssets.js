@@ -209,6 +209,8 @@ const UserAssets = () => {
       case "bnb": return 210.25; // Example price
       case "xrp": return 0.5086; // Example price
       case "doge": return 0.1163; // Example price
+      case "sol": return 245.01; // Example price
+      case "eur": return 1.08; // Example price
       case "ton": return 5.76; // Example price
       case "link": return 12.52; // Example price
       case "dot": return 4.76; // Example price

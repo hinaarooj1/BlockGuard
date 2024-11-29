@@ -21,10 +21,14 @@ import Coin5 from '../../../assets/images/new/5.png';
 import Coin6 from '../../../assets/images/new/6.png';
 import Coin7 from '../../../assets/images/new/7.png';
 import Coin8 from '../../../assets/images/new/8.png';
+import EurIco from '../../../assets/images/new/euro.svg';
+import SolIco from '../../../assets/images/new/solana.png';
 const coinLogos = {
     bnb: BNBcoin, // Replace with actual local path
     xrp: Coin1, // Replace with actual local path
     dogecoin: Coin2, // Replace with actual local path
+    euro: EurIco, // Replace with actual local path
+    solana: SolIco, // Replace with actual local path
     toncoin: Coin3, // Replace with actual local path
     chainlink: Coin4, // Replace with actual local path
     polkadot: Coin5, // Replace with actual local path
@@ -39,6 +43,8 @@ const getCoinPrice = (coinSymbol) => {
         case "bnb": return 210.25; // Example price
         case "xrp": return 0.5086; // Example price
         case "doge": return 0.1163; // Example price
+        case "eur": return 1.08; // Example price
+        case "sol": return 245.01; // Example price
         case "ton": return 5.76; // Example price
         case "link": return 12.52; // Example price
         case "dot": return 4.76; // Example price
@@ -212,6 +218,8 @@ const Orders = () => {
             case "bnb": return 210.25; // Example price
             case "xrp": return 0.5086; // Example price
             case "doge": return 0.1163; // Example price
+            case "eur": return 1.08; // Example price
+            case "sol": return 245.01;
             case "ton": return 5.76; // Example price
             case "link": return 12.52; // Example price
             case "dot": return 4.76; // Example price
@@ -350,6 +358,10 @@ const Orders = () => {
         } else if (depositName === "xrp") { // XRP
             depositBalance = NewValue;
         } else if (depositName === "dogecoin") { // Dogecoin
+            depositBalance = NewValue;
+        } else if (depositName === "euro") { // Dogecoin
+            depositBalance = NewValue;
+        } else if (depositName === "solana") { // Dogecoin
             depositBalance = NewValue;
         } else if (depositName === "toncoin") { // Toncoin
             depositBalance = NewValue;
@@ -1263,6 +1275,28 @@ const Orders = () => {
                                             className="text-muted-500 cursor-pointer dark:text-muted-400 mt-2 font-sans text-sm"
                                         >
                                             Available: {NewValue} DOGE
+                                        </p>
+                                    ) : depositName === "euro" ? (
+                                        <p
+                                            onClick={() =>
+                                                settransactionDetail({
+                                                    amountMinus: NewValue,
+                                                })
+                                            }
+                                            className="text-muted-500 cursor-pointer dark:text-muted-400 mt-2 font-sans text-sm"
+                                        >
+                                            Available: {NewValue} EUR
+                                        </p>
+                                    ) : depositName === "solana" ? (
+                                        <p
+                                            onClick={() =>
+                                                settransactionDetail({
+                                                    amountMinus: NewValue,
+                                                })
+                                            }
+                                            className="text-muted-500 cursor-pointer dark:text-muted-400 mt-2 font-sans text-sm"
+                                        >
+                                            Available: {NewValue} SOL
                                         </p>
                                     ) : depositName === "toncoin" ? (
                                         <p

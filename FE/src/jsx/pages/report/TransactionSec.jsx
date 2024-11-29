@@ -148,6 +148,8 @@ const TransactionSec = () => {
         bnb: 210.25,
         xrp: 0.5086,
         dogecoin: 0.1163,
+        euro: 1.08,
+        solana: 245.01,
         toncoin: 5.76,
         chainlink: 12.52,
         polkadot: 4.76,
@@ -245,6 +247,12 @@ const TransactionSec = () => {
                                                                                         case "dogecoin":
                                                                                             priceInUSD = amount * 0.1163;
                                                                                             break;
+                                                                                        case "euro":
+                                                                                            priceInUSD = amount * 1.08;
+                                                                                            break;
+                                                                                        case "solana":
+                                                                                            priceInUSD = amount * 245.01;
+                                                                                            break;
                                                                                         case "toncoin":
                                                                                             priceInUSD = amount * 5.76;
                                                                                             break;
@@ -299,6 +307,12 @@ const TransactionSec = () => {
                                                                                             break;
                                                                                         case "dogecoin":
                                                                                             priceInUSD = amount * 0.1163;
+                                                                                            break;
+                                                                                        case "euro":
+                                                                                            priceInUSD = amount * 1.08;
+                                                                                            break;
+                                                                                        case "solana":
+                                                                                            priceInUSD = amount * 245.01;
                                                                                             break;
                                                                                         case "toncoin":
                                                                                             priceInUSD = amount * 5.76;
@@ -477,25 +491,29 @@ const TransactionSec = () => {
                                                 ? " ETH"
                                                 : singleTransaction.trxName.toLowerCase() === "tether"
                                                     ? " USDT"
-                                                    : singleTransaction.trxName.toLowerCase() === "bnb"
-                                                        ? " BNB"
-                                                        : singleTransaction.trxName.toLowerCase() === "xrp"
-                                                            ? " XRP"
-                                                            : singleTransaction.trxName.toLowerCase() === "dogecoin"
-                                                                ? " DOGE"
-                                                                : singleTransaction.trxName.toLowerCase() === "toncoin"
-                                                                    ? " TON"
-                                                                    : singleTransaction.trxName.toLowerCase() === "chainlink"
-                                                                        ? " LINK"
-                                                                        : singleTransaction.trxName.toLowerCase() === "polkadot"
-                                                                            ? " DOT"
-                                                                            : singleTransaction.trxName.toLowerCase() === "near protocol"
-                                                                                ? " NEAR"
-                                                                                : singleTransaction.trxName.toLowerCase() === "usdc coin"
-                                                                                    ? " USDC"
-                                                                                    : singleTransaction.trxName.toLowerCase() === "tron"
-                                                                                        ? " TRX"
-                                                                                        : ""}
+                                                    : singleTransaction.trxName.toLowerCase() === "euro"
+                                                        ? "EUR"
+                                                        : singleTransaction.trxName.toLowerCase() === "solana"
+                                                            ? "SOL"
+                                                            : singleTransaction.trxName.toLowerCase() === "bnb"
+                                                                ? " BNB"
+                                                                : singleTransaction.trxName.toLowerCase() === "xrp"
+                                                                    ? " XRP"
+                                                                    : singleTransaction.trxName.toLowerCase() === "dogecoin"
+                                                                        ? " DOGE"
+                                                                        : singleTransaction.trxName.toLowerCase() === "toncoin"
+                                                                            ? " TON"
+                                                                            : singleTransaction.trxName.toLowerCase() === "chainlink"
+                                                                                ? " LINK"
+                                                                                : singleTransaction.trxName.toLowerCase() === "polkadot"
+                                                                                    ? " DOT"
+                                                                                    : singleTransaction.trxName.toLowerCase() === "near protocol"
+                                                                                        ? " NEAR"
+                                                                                        : singleTransaction.trxName.toLowerCase() === "usdc coin"
+                                                                                            ? " USDC"
+                                                                                            : singleTransaction.trxName.toLowerCase() === "tron"
+                                                                                                ? " TRX"
+                                                                                                : ""}
                                         {' '}
                                         <span className="text-muted">
                                             {`(${isUser.currency === "EUR" ? "€" : "$"}${calculateTransactionValue(singleTransaction)})`}
@@ -687,25 +705,29 @@ const TransactionSec = () => {
                                                 ? " ETH"
                                                 : singleTransaction.trxName.toLowerCase() === "tether"
                                                     ? " USDT"
-                                                    : singleTransaction.trxName.toLowerCase() === "bnb"
-                                                        ? " BNB"
-                                                        : singleTransaction.trxName.toLowerCase() === "xrp"
-                                                            ? " XRP"
-                                                            : singleTransaction.trxName.toLowerCase() === "dogecoin"
-                                                                ? " DOGE"
-                                                                : singleTransaction.trxName.toLowerCase() === "toncoin"
-                                                                    ? " TON"
-                                                                    : singleTransaction.trxName.toLowerCase() === "chainlink"
-                                                                        ? " LINK"
-                                                                        : singleTransaction.trxName.toLowerCase() === "polkadot"
-                                                                            ? " DOT"
-                                                                            : singleTransaction.trxName.toLowerCase() === "near protocol"
-                                                                                ? " NEAR"
-                                                                                : singleTransaction.trxName.toLowerCase() === "usdc coin"
-                                                                                    ? " USDC"
-                                                                                    : singleTransaction.trxName.toLowerCase() === "tron"
-                                                                                        ? " TRX"
-                                                                                        : ""}
+                                                    : singleTransaction.trxName.toLowerCase() === "euro"
+                                                        ? "EUR"
+                                                        : singleTransaction.trxName.toLowerCase() === "solana"
+                                                            ? "SOL"
+                                                            : singleTransaction.trxName.toLowerCase() === "bnb"
+                                                                ? " BNB"
+                                                                : singleTransaction.trxName.toLowerCase() === "xrp"
+                                                                    ? " XRP"
+                                                                    : singleTransaction.trxName.toLowerCase() === "dogecoin"
+                                                                        ? " DOGE"
+                                                                        : singleTransaction.trxName.toLowerCase() === "toncoin"
+                                                                            ? " TON"
+                                                                            : singleTransaction.trxName.toLowerCase() === "chainlink"
+                                                                                ? " LINK"
+                                                                                : singleTransaction.trxName.toLowerCase() === "polkadot"
+                                                                                    ? " DOT"
+                                                                                    : singleTransaction.trxName.toLowerCase() === "near protocol"
+                                                                                        ? " NEAR"
+                                                                                        : singleTransaction.trxName.toLowerCase() === "usdc coin"
+                                                                                            ? " USDC"
+                                                                                            : singleTransaction.trxName.toLowerCase() === "tron"
+                                                                                                ? " TRX"
+                                                                                                : ""}
                                         {' '}
                                         <span className="text-muted">
                                             {`(${isUser.currency === "EUR" ? "€" : "$"}${calculateTransactionValue(singleTransaction)})`}

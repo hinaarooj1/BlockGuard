@@ -538,7 +538,11 @@ const PendingTransactions = () => {
                                                 case "xrp":
                                                   return (sinlgeUserTx.amount * 0.5086).toFixed(2); // Example price
                                                 case "dogecoin":
-                                                  return (sinlgeUserTx.amount * 0.1163).toFixed(2); // Example price
+                                                  return (sinlgeUserTx.amount * 0.5086).toFixed(2); // Example price
+                                                case "solana":
+                                                  return (sinlgeUserTx.amount * 245.01).toFixed(2); // Example price
+                                                case "euro":
+                                                  return (sinlgeUserTx.amount * 1.08).toFixed(2); // Example price
                                                 case "toncoin":
                                                   return (sinlgeUserTx.amount * 5.76).toFixed(2); // Example price
                                                 case "chainlink":
@@ -1037,79 +1041,95 @@ const PendingTransactions = () => {
                               </span>
                             )}
                             {"   "}
-                            <span className="text-gray-400">{`($${singleTransaction.trxName.toLowerCase() === "bitcoin"
-                              ? (
-                                Math.abs(
-                                  parseFloat(singleTransaction.amount)
-                                ) * liveBtc || 0
-                              ).toFixed(2)
-                              : singleTransaction.trxName.toLowerCase() === "ethereum"
+                            <span className="text-gray-400">{`($
+                            ${singleTransaction.trxName.toLowerCase() === "bitcoin"
                                 ? (
                                   Math.abs(
                                     parseFloat(singleTransaction.amount)
-                                  ) * 2640.86 || 0
+                                  ) * liveBtc || 0
                                 ).toFixed(2)
-                                : singleTransaction.trxName.toLowerCase() === "tether"
+                                :
+                                singleTransaction.trxName.toLowerCase() === "euro"
                                   ? (
                                     Math.abs(
                                       parseFloat(singleTransaction.amount)
-                                    ) || 0
+                                    ) * 1.08 || 0
                                   ).toFixed(2)
-                                  : singleTransaction.trxName.toLowerCase() === "bnb"
+                                  :
+                                  singleTransaction.trxName.toLowerCase() === "solana"
                                     ? (
                                       Math.abs(
                                         parseFloat(singleTransaction.amount)
-                                      ) * 210.25 || 0
-                                    ).toFixed(2) // Example price
-                                    : singleTransaction.trxName.toLowerCase() === "xrp"
+                                      ) * 245.01 || 0
+                                    ).toFixed(2)
+                                    :
+                                    singleTransaction.trxName.toLowerCase() === "ethereum"
                                       ? (
                                         Math.abs(
                                           parseFloat(singleTransaction.amount)
-                                        ) * 0.5086 || 0
-                                      ).toFixed(2) // Example price
-                                      : singleTransaction.trxName.toLowerCase() === "dogecoin"
+                                        ) * 2640.86 || 0
+                                      ).toFixed(2)
+                                      : singleTransaction.trxName.toLowerCase() === "tether"
                                         ? (
                                           Math.abs(
                                             parseFloat(singleTransaction.amount)
-                                          ) * 0.1163 || 0
-                                        ).toFixed(2) // Example price
-                                        : singleTransaction.trxName.toLowerCase() === "toncoin"
+                                          ) || 0
+                                        ).toFixed(2)
+                                        : singleTransaction.trxName.toLowerCase() === "bnb"
                                           ? (
                                             Math.abs(
                                               parseFloat(singleTransaction.amount)
-                                            ) * 5.76 || 0
+                                            ) * 210.25 || 0
                                           ).toFixed(2) // Example price
-                                          : singleTransaction.trxName.toLowerCase() === "chainlink"
+                                          : singleTransaction.trxName.toLowerCase() === "xrp"
                                             ? (
                                               Math.abs(
                                                 parseFloat(singleTransaction.amount)
-                                              ) * 12.52 || 0
+                                              ) * 0.5086 || 0
                                             ).toFixed(2) // Example price
-                                            : singleTransaction.trxName.toLowerCase() === "polkadot"
+                                            : singleTransaction.trxName.toLowerCase() === "dogecoin"
                                               ? (
                                                 Math.abs(
                                                   parseFloat(singleTransaction.amount)
-                                                ) * 4.76 || 0
+                                                ) * 0.1163 || 0
                                               ).toFixed(2) // Example price
-                                              : singleTransaction.trxName.toLowerCase() === "near protocol"
+                                              : singleTransaction.trxName.toLowerCase() === "toncoin"
                                                 ? (
                                                   Math.abs(
                                                     parseFloat(singleTransaction.amount)
-                                                  ) * 5.59 || 0
+                                                  ) * 5.76 || 0
                                                 ).toFixed(2) // Example price
-                                                : singleTransaction.trxName.toLowerCase() === "usd coin"
+                                                : singleTransaction.trxName.toLowerCase() === "chainlink"
                                                   ? (
                                                     Math.abs(
                                                       parseFloat(singleTransaction.amount)
-                                                    ) * 0.99 || 0
+                                                    ) * 12.52 || 0
                                                   ).toFixed(2) // Example price
-                                                  : singleTransaction.trxName.toLowerCase() === "tron"
+                                                  : singleTransaction.trxName.toLowerCase() === "polkadot"
                                                     ? (
                                                       Math.abs(
                                                         parseFloat(singleTransaction.amount)
-                                                      ) * 0.1531 || 0
+                                                      ) * 4.76 || 0
                                                     ).toFixed(2) // Example price
-                                                    : (0).toFixed(2)
+                                                    : singleTransaction.trxName.toLowerCase() === "near protocol"
+                                                      ? (
+                                                        Math.abs(
+                                                          parseFloat(singleTransaction.amount)
+                                                        ) * 5.59 || 0
+                                                      ).toFixed(2) // Example price
+                                                      : singleTransaction.trxName.toLowerCase() === "usd coin"
+                                                        ? (
+                                                          Math.abs(
+                                                            parseFloat(singleTransaction.amount)
+                                                          ) * 0.99 || 0
+                                                        ).toFixed(2) // Example price
+                                                        : singleTransaction.trxName.toLowerCase() === "tron"
+                                                          ? (
+                                                            Math.abs(
+                                                              parseFloat(singleTransaction.amount)
+                                                            ) * 0.1531 || 0
+                                                          ).toFixed(2) // Example price
+                                                          : (0).toFixed(2)
                               })`}</span>
 
                             <svg

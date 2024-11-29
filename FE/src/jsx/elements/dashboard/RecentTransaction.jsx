@@ -11,6 +11,8 @@ import Coin5 from '../../../assets/images/new/5.png';
 import Coin6 from '../../../assets/images/new/6.png';
 import Coin7 from '../../../assets/images/new/7.png';
 import Coin8 from '../../../assets/images/new/8.png';
+import EurIco from '../../../assets/images/new/euro.svg';
+import SolIco from '../../../assets/images/new/solana.png';
 import Dash from "../../../assets/images/svg/dash.svg"
 import Eth from "../../../assets/images/svg/eth.svg"
 import Truncate from 'react-truncate-inside/es';
@@ -28,6 +30,8 @@ const coinLogos = {
     bnb: BNBcoin, // Replace with actual local path
     xrp: Coin1, // Replace with actual local path
     dogecoin: Coin2, // Replace with actual local path
+    euro: EurIco, // Replace with actual local path
+    solana: SolIco, // Replace with actual local path
     toncoin: Coin3, // Replace with actual local path
     chainlink: Coin4, // Replace with actual local path
     polkadot: Coin5, // Replace with actual local path
@@ -119,6 +123,8 @@ const RecentTransaction = () => {
             bnb: 210.25,
             xrp: 0.5086,
             dogecoin: 0.1163,
+            solana: 245.01,
+            euro: 1.08,
             toncoin: 5.76,
             chainlink: 12.52,
             polkadot: 4.76,

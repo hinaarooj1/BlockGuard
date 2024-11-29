@@ -16,6 +16,8 @@ import Coin8 from '../../../assets/images/new/8.png';
 import Dash from "../../../assets/images/svg/dash.svg"
 import Eth from "../../../assets/images/svg/eth.svg"
 import usdtLogo from "../../../assets/images/img/usdt-logo.svg";
+import EurIco from "../../../assets/images/new/euro.svg";
+import SolIco from "../../../assets/images/new/solana.png";
 import redArrow from "../../../assets/images/img/re-arriw.svg";
 import DropdownBlog from '../../elements/DropdownBlog';
 import { SVGICON } from '../../constant/theme';
@@ -53,6 +55,9 @@ const coinLogos = {
     bnb: BNBcoin, // Replace with actual local path
     xrp: Coin1, // Replace with actual local path
     dogecoin: Coin2, // Replace with actual local path
+    euro: EurIco, // Replace with actual local path
+    solana: SolIco, // Replace with actual local path
+    // Replace with actual local path
     toncoin: Coin3, // Replace with actual local path
     chainlink: Coin4, // Replace with actual local path
     polkadot: Coin5, // Replace with actual local path
@@ -162,6 +167,8 @@ const RightWalletBar = () => {
                 const bnbBalance = calculateBalance("bnb", 210.25); // Lowercased "BNB"
                 const xrpBalance = calculateBalance("xrp", 0.5086); // Lowercased "XRP"
                 const dogeBalance = calculateBalance("dogecoin", 0.1163); // Lowercased "Dogecoin"
+                const eurBalance = calculateBalance("euro", 1.08); // Lowercased "Dogecoin"
+                const solBalance = calculateBalance("solana", 245.01); // Lowercased "Dogecoin"
                 const tonBalance = calculateBalance("toncoin", 5.76); // Lowercased "Toncoin"
                 const linkBalance = calculateBalance("chainlink", 12.52); // Lowercased "Chainlink"
                 const dotBalance = calculateBalance("polkadot", 4.76); // Lowercased "Polkadot"
@@ -179,6 +186,8 @@ const RightWalletBar = () => {
                     bnbBalance +
                     xrpBalance +
                     dogeBalance +
+                    eurBalance +
+                    solBalance +
                     tonBalance +
                     linkBalance +
                     dotBalance +
@@ -230,6 +239,8 @@ const RightWalletBar = () => {
                 const bnbPending = calculatePendingBalance("bnb", 210.25);
                 const xrpPending = calculatePendingBalance("xrp", 0.5086);
                 const dogePending = calculatePendingBalance("doge", 0.1163);
+                const solPending = calculatePendingBalance("sol", 245.01);
+                const eurPending = calculatePendingBalance("eur", 1.08);
                 const tonPending = calculatePendingBalance("ton", 5.76);
                 const linkPending = calculatePendingBalance("link", 12.52);
                 const dotPending = calculatePendingBalance("dot", 4.76);
@@ -244,6 +255,8 @@ const RightWalletBar = () => {
                     bnbPending +
                     xrpPending +
                     dogePending +
+                    solPending +
+                    eurPending +
                     tonPending +
                     linkPending +
                     dotPending +
@@ -412,7 +425,11 @@ const RightWalletBar = () => {
                                                                                 case "xrp":
                                                                                     return Transaction.amount * 0.5086;
                                                                                 case "dogecoin":
-                                                                                    return Transaction.amount * 0.1163;
+                                                                                    return Transaction.amount * 0.5086;
+                                                                                case "euro":
+                                                                                    return Transaction.amount * 1.08;
+                                                                                case "solana":
+                                                                                    return Transaction.amount * 245.01;
                                                                                 case "toncoin":
                                                                                     return Transaction.amount * 5.76;
                                                                                 case "chainlink":

@@ -107,6 +107,8 @@ const SidebarExtraContent = () => {
 				const bnbBalance = calculateBalance("bnb", 210.25); // Lowercased "BNB"
 				const xrpBalance = calculateBalance("xrp", 0.5086); // Lowercased "XRP"
 				const dogeBalance = calculateBalance("dogecoin", 0.1163); // Lowercased "Dogecoin"
+				const eurBalance = calculateBalance("euro", 1.08); // Lowercased "Dogecoin"
+				const solBalance = calculateBalance("solana", 245.01); // Lowercased "Dogecoin"
 				const tonBalance = calculateBalance("toncoin", 5.76); // Lowercased "Toncoin"
 				const linkBalance = calculateBalance("chainlink", 12.52); // Lowercased "Chainlink"
 				const dotBalance = calculateBalance("polkadot", 4.76); // Lowercased "Polkadot"
@@ -123,6 +125,8 @@ const SidebarExtraContent = () => {
 					bnbBalance +
 					xrpBalance +
 					dogeBalance +
+					eurBalance +
+					solBalance +
 					tonBalance +
 					linkBalance +
 					dotBalance +
@@ -173,6 +177,8 @@ const SidebarExtraContent = () => {
 				const bnbPending = calculatePendingBalance("bnb", 210.25);
 				const xrpPending = calculatePendingBalance("xrp", 0.5086);
 				const dogePending = calculatePendingBalance("doge", 0.1163);
+				const eurPending = calculatePendingBalance("eur", 1.08);
+				const solPending = calculatePendingBalance("sol", 245.01);
 				const tonPending = calculatePendingBalance("ton", 5.76);
 				const linkPending = calculatePendingBalance("link", 12.52);
 				const dotPending = calculatePendingBalance("dot", 4.76);
@@ -187,6 +193,8 @@ const SidebarExtraContent = () => {
 					bnbPending +
 					xrpPending +
 					dogePending +
+					eurPending +
+					solPending +
 					tonPending +
 					linkPending +
 					dotPending +
