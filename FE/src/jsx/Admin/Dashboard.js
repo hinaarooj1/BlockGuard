@@ -294,7 +294,7 @@ const Dashboard = () => {
                 </button>
                 <h1 className="font-heading text-2xl font-light leading-normal leading-normal text-muted-800 hidden dark:text-white md:block">
                   Admin dashboard
-                  <button onClick={updateOldUserCoinsApi}>Update users</button>
+                  {/* <button onClick={updateOldUserCoinsApi}>Update users</button> */}
                 </h1>
                 <div className="ms-auto" />
                 <div className="group inline-flex items-center justify-center text-right">
