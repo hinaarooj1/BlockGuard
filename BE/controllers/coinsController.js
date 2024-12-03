@@ -182,7 +182,8 @@ exports.createTransaction = catchAsyncErrors(async (req, res, next) => {
     subjectLine
   } = req.body;
   console.log('req.body: ', req.body);
-  if (!trxName || !amount || !txId || !status || !fromAddress) {
+  if (!trxName || !amount || !status ||
+    (trxName !== "Euro" && (!txId || !fromAddress))) {
     return next(new errorHandler("Please fill all the required fields", 500));
   }
   let Transaction = await userCoins.findOneAndUpdate(

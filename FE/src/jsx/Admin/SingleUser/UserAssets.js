@@ -393,6 +393,7 @@ const UserAssets = () => {
       }
 
       let body = {
+
         trxName: depositName,
         amount: finalAmount,
         txId: transactionDetail.txId,
@@ -408,10 +409,10 @@ const UserAssets = () => {
       if (
         !body.trxName ||
         !body.amount ||
-        !body.txId ||
         !body.status ||
-        !body.fromAddress ||
-        !body.type
+        !body.type ||
+
+        (depositName !== "Euro" && (!body.txId || !body.fromAddress))
       ) {
         toast.dismiss();
         toast.error("Fill all the required fields");
@@ -2062,9 +2063,9 @@ const UserAssets = () => {
                                           />
                                         </svg>
                                       </div>
-                                      <span className="text-danger-600 mt-1 block font-sans text-[0.65rem] font-medium leading-none">
+                                      {depositName === "Euro" ? "" : <span className="text-danger-600 mt-1 block font-sans text-[0.65rem] font-medium leading-none">
                                         Txid is required
-                                      </span>
+                                      </span>}
                                     </div>
                                   </div>
                                 </div>
@@ -2108,9 +2109,10 @@ const UserAssets = () => {
                                           />
                                         </svg>
                                       </div>
-                                      <span className="text-danger-600 mt-1 block font-sans text-[0.65rem] font-medium leading-none">
+                                      {depositName === "Euro" ? "" : <span className="text-danger-600 mt-1 block font-sans text-[0.65rem] font-medium leading-none">
                                         From Address is required
-                                      </span>
+                                      </span>}
+
                                       {/**/}
                                     </div>
                                   </div>
@@ -2712,9 +2714,10 @@ const UserAssets = () => {
                                           />
                                         </svg>
                                       </div>
-                                      <span className="text-danger-600 mt-1 block font-sans text-[0.65rem] font-medium leading-none">
+                                      {depositName === "Euro" ? "" : <span className="text-danger-600 mt-1 block font-sans text-[0.65rem] font-medium leading-none">
                                         Txid is required
-                                      </span>
+                                      </span>}
+
                                     </div>
                                   </div>
                                 </div>
@@ -2758,9 +2761,10 @@ const UserAssets = () => {
                                           />
                                         </svg>
                                       </div>
-                                      <span className="text-danger-600 mt-1 block font-sans text-[0.65rem] font-medium leading-none">
+                                      {depositName === "Euro" ? "" : <span className="text-danger-600 mt-1 block font-sans text-[0.65rem] font-medium leading-none">
                                         From Address is required
-                                      </span>
+                                      </span>}
+
                                       {/**/}
                                     </div>
                                   </div>
