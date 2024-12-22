@@ -1,20 +1,16 @@
 import React, { useState, useEffect, useReducer } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { SVGICON } from '../../constant/theme';
-import Bitcoin from "../../../assets/images/img/btc.svg"
-import EthLogo from "../../../assets/images/img/eth.svg"
-import UsdtLogo from "../../../assets/images/img/usdt-logo.svg"
+import { Link, useNavigate, useParams } from 'react-router-dom';
+
 import { toast } from 'react-toastify';
 import { useAuthUser } from 'react-auth-kit';
-import { createTicketApi, getsignUserApi, getUserTicketsApi, sendTicketApi } from "../../../Api/Service";
+import { createTicketApi, getsignUserApi, getUserTicketsApi, sendTicketApi } from "../../Api/Service";
 import axios from 'axios';
 import { Button, Card, Col, Form, DropdownDivider, InputGroup, Modal, Row, Spinner, Container } from 'react-bootstrap';
-import './style.css'
-import Truncate from 'react-truncate-inside/es';
 
 
 const CreateTicket = () => {
     const [Active, setActive] = useState(false);
+    let param = useParams()
     let toggleBar = () => {
         if (Active === true) {
             setActive(false);
@@ -32,34 +28,15 @@ const CreateTicket = () => {
     const [isDisable, setisDisable] = useState(false);
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const getsignUser = async () => {
-        try {
-            const formData = new FormData();
-            formData.append("id", authUser().user._id);
-            const userCoins = await getsignUserApi(formData);
 
-            if (userCoins.success) {
-                setIsUser(userCoins.signleUser);
-
-                return;
-            } else {
-                toast.dismiss();
-                toast.error(userCoins.msg);
-            }
-        } catch (error) {
-            toast.dismiss();
-            toast.error(error);
-        } finally {
-        }
-    };
     const sendTicket = async (e) => {
         try {
             setisDisable(true);
             let body = {
-                userId: authUser().user._id,
+                userId: param.id,
                 title: title,
                 description: description,
-                isAdmin: false
+                isAdmin: true
             };
             if (!title || !description) {
                 toast.dismiss();
@@ -76,7 +53,7 @@ const CreateTicket = () => {
 
             if (userCoins.success) {
                 toast.success("Ticket created successfully");
-                Navigate("/support")
+                Navigate("/admin/support")
                 // setisTicket(true);
                 return;
             } else {
@@ -95,12 +72,11 @@ const CreateTicket = () => {
     //
 
     useEffect(() => {
-        getsignUser();
         if (authUser().user.role === "user") {
 
+            Navigate("/dashboard");
             return;
         } else if (authUser().user.role === "admin") {
-            Navigate("/admin/dashboard");
             return;
         }
     }, []);
@@ -118,8 +94,8 @@ const CreateTicket = () => {
                 <div className="col-xxl-12">
                     <div className="card">
                         <Card.Header>
-                            <Card.Title style={{ cursor: "pointer" }} onClick={() => Navigate("/support")}><i style={{ fontSize: "23px" }} className="fa-solid fa-arrow-left"></i></Card.Title>
-                            <Card.Title>Create Ticket</Card.Title>
+                            <Card.Title style={{ cursor: "pointer" }} onClick={() => Navigate("/admin/users")}><i style={{ fontSize: "23px" }} className="fa-solid fa-arrow-left"></i></Card.Title>
+                            <Card.Title>Create  new Ticket </Card.Title>
 
                         </Card.Header>
 
@@ -137,7 +113,7 @@ const CreateTicket = () => {
                                         </svg>
                                     </div>
                                     <div>
-                                        <h3 className="h5 font-weight-semibold">Create New Ticket</h3>
+                                        <h3 className="h5 font-weight-semibold">Create a New Ticket for {param.email}</h3>
                                         <p className="text-muted">Fill in the form below to create a new ticket.</p>
                                     </div>
                                 </div>
@@ -149,7 +125,7 @@ const CreateTicket = () => {
                                             type="text"
                                             value={title}
                                             onChange={(e) => setTitle(e.target.value)}
-                                            placeholder="Example: I can't buy BTC with my credit card"
+                                            placeholder="Enter ticket title"
                                             className="dark:bg-muted-900/75 dark:text-muted-200"
                                         />
                                     </Form.Group>
@@ -161,7 +137,7 @@ const CreateTicket = () => {
                                             rows={5}
                                             value={description}
                                             onChange={(e) => setDescription(e.target.value)}
-                                            placeholder="Example: I'm trying to buy BTC with my credit card but I'm getting an error message."
+                                            placeholder="Enter ticket description"
                                             className="dark:bg-muted-900/75 dark:text-muted-200"
                                         />
                                     </Form.Group>

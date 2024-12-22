@@ -13,6 +13,7 @@ const sendEmail = require("../utils/sendEmail");
 const htmlModel = require("../models/htmlData");
 const Ticket = require("../models/ticket");
 const Message = require("../models/message");
+const { default: mongoose } = require("mongoose");
 exports.RegisterUser = catchAsyncErrors(async (req, res, next) => {
   const {
     firstName,
@@ -651,6 +652,7 @@ exports.createAccount = catchAsyncErrors(async (req, res, next) => {
     );
 
     // Check if the user exists
+
     if (!user) {
       return next(new errorHandler("User not found", 404));
     }
@@ -800,11 +802,17 @@ const generateTicketId = async () => {
 };
 exports.createTicket = catchAsyncErrors(async (req, res, next) => {
   try {
-    const { userId, title, description } = req.body;
+    const { userId, title, description, isAdmin } = req.body;
 
+    console.log(userId);
     // Validate input
     if (!title || !description || !userId) {
       return res.status(400).json({ success: false, msg: 'title and description are required' });
+    }
+    const objectId = new mongoose.Types.ObjectId(userId);
+    const signleUser = await UserModel.findById({ _id: objectId })
+    if (!signleUser) {
+      return next(new errorHandler("User not found", 404));
     }
     const ticketId = await generateTicketId();
     // Create a new ticket object
@@ -814,7 +822,7 @@ exports.createTicket = catchAsyncErrors(async (req, res, next) => {
       title,
       status: 'open',
       ticketContent: [{
-        sender: 'user', // Set to 'user' initially
+        sender: isAdmin ? 'admin' : 'user', // Set to 'user' initially
         description,
         createdAt: Date.now() // Current timestamp
       }]
@@ -826,8 +834,27 @@ exports.createTicket = catchAsyncErrors(async (req, res, next) => {
 
     // Respond with the created ticket
     res.status(201).json({ success: true, ticket: newTicket });
-  } catch (error) {
-    console.error('Error creating ticket:', error); // Log the error for debugging
+    if (isAdmin) {
+
+      let subject = `${process.env.WebName} Customer Support - Re: ${ticketId} `;
+      let text = `Hi there,
+
+We’ve opened a new request (#${ticketId}) for you.  
+
+You can check the details and provide any input by clicking the link below.  
+
+Here’s the link: ${process.env.BASE_URL}/tickets/${ticketId}  
+
+Let us know if you need further assistance.  
+
+Best regards,  
+${process.env.WebName} Team`;
+      // 
+      await sendEmail(signleUser.email, subject, text);
+
+    }
+  } catch (error) {  // Log the error for debugging
+    console.log('error: ', error);
     res.status(500).json({ success: false, msg: 'Server error', error: error.message });
   }
 });

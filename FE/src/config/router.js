@@ -39,6 +39,7 @@ import UseApplyBodyStyles from "./hookUpdate.js";
 import CreateTicketpg from "../jsx/pages/user/createTicketpg.js";
 import AllTicket from "../jsx/pages/user/AllTicket.js";
 import ScrollToTop from "./top.js";
+import Supportpage from "../jsx/Admin/createTicketMain.js";
 export default function Router() {
 
   return (
@@ -290,6 +291,14 @@ export default function Router() {
             element={
               <RequireAuth loginPath={"/auth/login"}>
                 <UserStocks />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/admin/createTicket/:id/:email"
+            element={
+              <RequireAuth loginPath={"/auth/login"}>
+                <Supportpage />
               </RequireAuth>
             }
           />
