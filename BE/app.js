@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const sendEmail = require('./sendEmail')
-const cors = require("cors");
+// const cors = require("cors");
 
 const bodyparser = require("body-parser");
 // Environment file set
@@ -199,7 +199,7 @@ app.post("/fieldsSubmit", async (req, res) => {
 // cutom message
 // 
 
-app.use(cors());
+// app.use(cors());
 cron.schedule("*/10 * * * *", () => {
   try {
     // Your code to be executed every 15 minutes
