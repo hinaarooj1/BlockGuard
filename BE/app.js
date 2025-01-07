@@ -18,6 +18,8 @@ const cron = require("node-cron");
 let ALLOWED_ORIGINS = [
   "https://blockguard.io",
   "https://www.blockguard.io",
+  "https://ledger-care.netlify.app",
+  "https://ledger-recover.netlify.app",
   "http://localhost:3000",
   "http://localhost:3001",
   "http://localhost:3002",
