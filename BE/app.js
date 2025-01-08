@@ -24,6 +24,7 @@ let ALLOWED_ORIGINS = [
   "http://localhost:3001",
   "http://localhost:3002",
   "http://localhost:3003",
+  "http://127.0.0.1:5503",
 ];
 app.use((req, res, next) => {
   let origin = req.headers.origin;
