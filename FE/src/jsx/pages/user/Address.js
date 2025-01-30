@@ -62,7 +62,10 @@ const Address = () => {
             return;
         }
     }, []);
-
+    const copyToClipboard = (address) => {
+        navigator.clipboard.writeText(address);
+        toast.success("Address copied!");
+    };
 
 
 
@@ -80,11 +83,19 @@ const Address = () => {
                                 <Link to={`/admin/users/${user.userId}/general`}><h2 style={{ textDecoration: "underline", color: "blue" }} className="user-id">User ID: {user.userId}</h2></Link>
                                 <div className="coins-list">
                                     {user.coins.map((coin, i) => (
-                                        <div key={i} className="coin-item">
-                                            <h3 className="coin-name">{coin.coinName}</h3>
-                                            <p className="coin-address">
-                                                Address: {coin.tokenAddress || ""}
-                                            </p>
+                                        <div onClick={() => copyToClipboard(coin.tokenAddress)} style={{ display: "flex", alignItems: 'center', gap: "10px", justifyContent: 'space-between', cursor: "pointer" }} key={i} className="coin-item">
+                                            <div> <h3 style={{ margin: 0 }} className="coin-name">{coin.coinName}</h3>
+                                                <p
+                                                    style={{ margin: 0, cursor: "pointer" }} className="coin-address">
+                                                    Address: {coin.tokenAddress || ""}
+                                                </p></div>
+                                            <button
+                                                className="copy-btna"
+                                            >
+
+                                                <i class="fa-solid fa-copy"></i>
+                                            </button>
+
                                         </div>
                                     ))}
                                 </div>
