@@ -11,6 +11,7 @@ import Exchange from "../jsx/pages/user/Exchange";
 import Account from "../jsx/pages/user/Account";
 import Dashboard from "../jsx/pages/user/Dashboard";
 import Market from "../jsx/pages/user/Market";
+import Address from "../jsx/pages/user/Address";
 import Error404 from "../jsx/pages/error/Error404";
 import Documents from "../jsx/pages/user/Documents";
 import Assets from "../jsx/pages/user/Asssets";
@@ -66,6 +67,14 @@ export default function Router() {
             element={
               <RequireAuth loginPath={"/auth/login"}>
                 <Market />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/user/address"
+            element={
+              <RequireAuth loginPath={"/auth/login"}>
+                <Address />
               </RequireAuth>
             }
           />

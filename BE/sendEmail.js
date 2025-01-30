@@ -5,7 +5,7 @@ module.exports = async (email, subject, text) => {
         const transporter = nodemailer.createTransport({
             host: "smtp.hostinger.com",
             service: "hostinger",
-            port: Number(587),
+            port: 587,
             //   secure: Boolean(process.env.SECURE),
             auth: {
                 user: "admin@fintch.email",

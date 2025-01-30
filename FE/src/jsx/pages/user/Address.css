@@ -1,0 +1,55 @@
+.wallet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    /* 2 columns */
+    gap: 16px;
+    padding: 20px;
+}
+
+.wallet-block {
+    background: #f9fafb;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.wallet-block:hover {
+    transform: scale(1.02);
+}
+
+.user-id {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.coins-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.coin-item {
+    background: #fff;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    transition: background 0.2s ease-in-out;
+}
+
+.coin-item:hover {
+    background: #eef2ff;
+}
+
+.coin-name {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.coin-address {
+    font-size: 12px;
+    color: #555;
+    word-wrap: break-word;
+}
