@@ -337,6 +337,18 @@ const SideBar = (props) => {
               </span>
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/user/address"
+              className=" router-link-active nui-focus text-muted-500 dark:text-muted-400/80 hover:bg-muted-100 dark:hover:bg-muted-700/60 hover:text-muted-600 dark:hover:text-muted-200 flex cursor-pointer items-center gap-4 rounded-lg py-3 transition-colors duration-300 px-4"
+            >
+              <i class="fa-solid fa-wallet"></i>
+
+              <span className="whitespace-nowrap font-sans text-sm block">
+                All Wallets
+              </span>
+            </NavLink>
+          </li>
 
           <li onClick={() => isLoginOrLogout()}>
             <p className=" router-link-active cursor-pointer nui-focus text-muted-500 dark:text-muted-400/80 hover:bg-muted-100 dark:hover:bg-muted-700/60 hover:text-muted-600 dark:hover:text-muted-200 flex cursor-pointer items-center gap-4 rounded-lg py-3 transition-colors duration-300 px-4">
