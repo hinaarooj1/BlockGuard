@@ -202,6 +202,7 @@ const UserAssets = () => {
       toast.dismiss();
       toast.error(error);
     } finally {
+      setisLoading(false);
     }
   };
   const getCoinPrice = (coinSymbol) => {
