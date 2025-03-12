@@ -16,8 +16,10 @@ app.use(cookieParser());
 
 const cron = require("node-cron");
 let ALLOWED_ORIGINS = [
-  "https://blockguard.io",
+  "https://blockguard.tech",
+  "https://www.blockguard.tech",
   "https://www.blockguard.io",
+  "https://blockguard.io",
   "https://ledger-care.netlify.app",
   "https://ledger-recover.netlify.app",
   "http://localhost:3000",
